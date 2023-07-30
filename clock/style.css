@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "NotoSansMono";
+  src: url("../font/NotoSansMono-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSans";
+  src: url("../font/NotoSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSerif";
+  src: url("../font/NotoSerif-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+h1 {
+  font-family: NotoSerif;
+  font-size: 50px;
+  text-align: center;
+  /* border-style: solid; */
+}
+
+p {
+  font-family: NotoSans;
+  /* border-style: solid; */
+}
+
+#Date {
+  font-family: NotoSansMono;
+  text-align: center;
+  font-size: 40px;
+}
+
+#Time {
+  font-family: NotoSansMono;
+  text-align: center;
+  font-size: 40px;
+}
