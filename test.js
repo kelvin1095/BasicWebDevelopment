@@ -2,10 +2,6 @@
 This is a comment
 */
 
-const carName = "Volvo";
-
-// carName = "BMW";
-
 const pikachu = {
   name: "Pikachu",
   height: 0.4,
@@ -20,6 +16,20 @@ const pikachu = {
     this.level = this.level + 1;
   },
 };
+
+const test1 = `
+    <ul>
+        <li>Height: ${pikachu.height} m</li>
+        <li>Weight: ${pikachu.weight} kg</li>
+        <li>Pokedex Number: ${pikachu.pokedexNo}</li>
+    </ul>
+`;
+
+const newPokemon = document.querySelector("#test1");
+
+const pokemonStats = document.createElement("pikachuStats");
+pokemonStats.innerHTML = test1;
+newPokemon.append(pokemonStats);
 
 class Pokemon {
   constructor(
@@ -47,9 +57,7 @@ class Pokemon {
 
 const charmander = new Pokemon("Charmander", 0.6, 8.5, "Fire", "", 4, 5);
 
-document.getElementById("test").innerHTML = carName;
-
-const test = `
+const test2 = `
     <h3>${charmander.name}</h3>
     <ul>
         <li>Height: ${charmander.height} m</li>
@@ -58,21 +66,7 @@ const test = `
     </ul>
 `;
 
-document.getElementById("test2").innerHTML = test;
-
-const test2 = `
-    <ul>
-        <li>Height: ${pikachu.height} m</li>
-        <li>Weight: ${pikachu.weight} kg</li>
-        <li>Pokedex Number: ${pikachu.pokedexNo}</li>
-    </ul>
-`;
-
-const newPokemon = document.querySelector("#test3");
-
-const pokemonStats = document.createElement("pikachuStats");
-pokemonStats.innerHTML = test2;
-newPokemon.append(pokemonStats);
+document.getElementById("test2").innerHTML = test2;
 
 // console.log("This is Pikachu: ", pikachu)
 // console.log("This is Charmander: ", charmander)

@@ -1,0 +1,100 @@
+* {
+  background-color: #f0f0f0;
+}
+
+body {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#Container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: grid;
+  column-gap: 5px;
+  row-gap: 5px;
+  border-style: dashed;
+}
+
+#Box1 {
+  background-color: blue;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box1:hover {
+  background-color: olive;
+}
+
+#Box2 {
+  background-color: red;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box3 {
+  background-color: green;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box4 {
+  background-color: orange;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box5 {
+  background-color: pink;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box6 {
+  background-color: yellow;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box7 {
+  background-color: blueviolet;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box8 {
+  background-color: aqua;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box9 {
+  background-color: palegoldenrod;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box10 {
+  background-color: indianred;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box11 {
+  background-color: azure;
+  height: 80px;
+  margin: 10px;
+}
+
+#Box12 {
+  background-color: paleturquoise;
+  height: 80px;
+  margin: 10px;
+}

@@ -13,17 +13,9 @@ const monthName = [
   "Dec",
 ];
 
-const dayName = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-function getTime() {
+const getTime = function () {
   const d = new Date();
   let year = d.getFullYear();
   let month = d.getMonth();
@@ -33,11 +25,11 @@ function getTime() {
   let minute = d.getMinutes().toString().padStart(2, "0");
   let seconds = d.getSeconds().toString().padStart(2, "0");
 
-  theDate = `${dayName[dayOfWeek]}, ${day} ${monthName[month]} ${year}`;
+  theDate = `${dayName[dayOfWeek]} ${day} ${monthName[month]} ${year}`;
   theTime = `${hour}:${minute}:${seconds}`;
 
   document.querySelector("#Date").innerHTML = theDate;
   document.querySelector("#Time").innerHTML = theTime;
-}
+};
 
 setInterval(getTime, 1000);
