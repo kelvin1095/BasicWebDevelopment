@@ -23,7 +23,7 @@ const dayName = [
   "Saturday",
 ];
 
-function getTime() {
+const getTime = function () {
   const d = new Date();
   let year = d.getFullYear();
   let month = d.getMonth();
@@ -38,6 +38,6 @@ function getTime() {
 
   document.querySelector("#Date").innerHTML = theDate;
   document.querySelector("#Time").innerHTML = theTime;
-}
+};
 
 setInterval(getTime, 1000);
