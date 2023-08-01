@@ -1,0 +1,96 @@
+/* 
+Rose red        #C33C54
+Indigo dye      #254E70
+Cerulean        #37718E
+Non Photo blue  #8EE3EF
+Celeste         #AEF3E7
+*/
+
+/* 
+https://coolors.co/ccdbdc-9ad1d4-80ced7-007ea7-003249
+Electric blue   #87F1FF
+Lavender pink   #FFB2E6
+Heliotrope      #D972FF
+Veronica        #8447FF
+Aquamarine      #8CFFDA
+*/
+
+/*
+This is an example of a css comment
+*/
+
+* {
+  background-color: #f0f0f0;
+
+  > * {
+    background-color: inherit;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+
+div {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#MainContent {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* padding-right: 5px;
+  padding-left: 5px; */
+}
+
+h1 {
+  text-align: center;
+}
+
+header {
+  background-color: #d972ff;
+  height: 50px;
+}
+
+footer {
+  background-color: #ffb2e6;
+}
+
+#About {
+  background-color: #87f1ff;
+}
+
+#Pages {
+  background-color: #8cffda;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer a {
+  background-color: #8447ff;
+  text-align: center;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px gray;
+}
+
+footer a:hover {
+  background-color: purple;
+}
+
+#contactInfo ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  gap: 10px;
+}
+
+#contactInfo ul a {
+  display: block;
+}

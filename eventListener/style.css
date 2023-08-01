@@ -15,86 +15,81 @@ h2 {
   text-align: center;
 }
 
+#Mouse {
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+}
+
 #Container {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 400px;
   display: grid;
-  column-gap: 5px;
-  row-gap: 5px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  /* column-gap: 10px;
+  row-gap: 10px; */
+  background-color: lightgray;
   border-style: dashed;
+  border-radius: 5px;
+
+  > * {
+    background-color: red;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+  }
 }
 
 #Box1 {
   background-color: blue;
-  height: 80px;
-  margin: 10px;
-}
-
-#Box1:hover {
-  background-color: olive;
 }
 
 #Box2 {
   background-color: red;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box3 {
   background-color: green;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box4 {
   background-color: orange;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box5 {
   background-color: pink;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box6 {
+  grid-column: span 2;
+  grid-row: span 2;
   background-color: yellow;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box7 {
   background-color: blueviolet;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box8 {
   background-color: aqua;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box9 {
   background-color: palegoldenrod;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box10 {
   background-color: indianred;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box11 {
   background-color: azure;
-  height: 80px;
-  margin: 10px;
 }
 
 #Box12 {
   background-color: paleturquoise;
-  height: 80px;
-  margin: 10px;
+}
+
+#Box13 {
+  background-color: magenta;
 }
