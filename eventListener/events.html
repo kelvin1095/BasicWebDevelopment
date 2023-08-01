@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="events.js" defer></script>
     <title>Event Test</title>
   </head>
 
   <body>
-    <header>Links to other pages</header>
+    <header>
+      <a href="../index.html">Main Page</a>
+      Links to other pages
+    </header>
 
     <h1>Colourful Boxes</h1>
     <p>This is a little test page to learn about event listeners.</p>
 
     <h2>Mouse Coordinates</h2>
-    <p id="Mouse"></p>
-    <p id="x"></p>
-    <p id="y"></p>
+    <div id="Mouse">
+      <p id="x">N/A</p>
+      <p id="y">N/A</p>
+    </div>
 
     <p>
         <div id="Container">
@@ -24,15 +28,24 @@
             <div id="Box3"></div>
             <div id="Box4"></div>
             <div id="Box5"></div>
-            <div id="Box6"></div>
+            <div id="Box6">
+              Help Me!<br>
+              <button type="button">Click Me!</button>
+            </div>
             <div id="Box7"></div>
             <div id="Box8"></div>
             <div id="Box9"></div>
             <div id="Box10"></div>
             <div id="Box11"></div>
             <div id="Box12"></div>
+            <div id="Box13"></div>
         </div>
     </p>
+
+    <h1>Quick Explanation</h1>
+    <p>The first box changes colour on click, then changes back to the original colour after clicking again</p>
+    <p>The second box changes to a random colour on click, then changes back to the original colour after double clicking again</p>
+    <p>The third box changes colour on enter and exit</p>
 
     <footer>Links to my contact</footer>
   </body>

@@ -1,7 +1,3 @@
-/*
-This is a comment
-*/
-
 const pikachu = {
   name: "Pikachu",
   height: 0.4,
@@ -18,12 +14,12 @@ const pikachu = {
 };
 
 const test1 = `
-    <ul>
-        <li>Height: ${pikachu.height} m</li>
-        <li>Weight: ${pikachu.weight} kg</li>
-        <li>Pokedex Number: ${pikachu.pokedexNo}</li>
-    </ul>
-`;
+      <ul>
+          <li>Height: ${pikachu.height} m</li>
+          <li>Weight: ${pikachu.weight} kg</li>
+          <li>Pokedex Number: ${pikachu.pokedexNo}</li>
+      </ul>
+  `;
 
 const newPokemon = document.querySelector("#test1");
 
@@ -58,13 +54,13 @@ class Pokemon {
 const charmander = new Pokemon("Charmander", 0.6, 8.5, "Fire", "", 4, 5);
 
 const test2 = `
-    <h3>${charmander.name}</h3>
-    <ul>
-        <li>Height: ${charmander.height} m</li>
-        <li>Weight: ${charmander.weight} kg</li>
-        <li>Pokedex Number: ${charmander.pokedexNo}</li>
-    </ul>
-`;
+      <h2>${charmander.name}</h2>
+      <ul>
+          <li>Height: ${charmander.height} m</li>
+          <li>Weight: ${charmander.weight} kg</li>
+          <li>Pokedex Number: ${charmander.pokedexNo}</li>
+      </ul>
+  `;
 
 document.getElementById("test2").innerHTML = test2;
 
