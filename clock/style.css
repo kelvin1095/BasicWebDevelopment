@@ -20,6 +20,14 @@
 }
 
 * {
+  background-color: #f0f0f0;
+
+  > * {
+    background-color: inherit;
+  }
+}
+
+body {
   max-width: 600px;
   margin: 20px auto;
 }
