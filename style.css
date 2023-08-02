@@ -19,8 +19,10 @@ Aquamarine      #8CFFDA
 This is an example of a css comment
 */
 
+/* Global styling */
+
 * {
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 
   > * {
     background-color: inherit;
@@ -29,34 +31,34 @@ This is an example of a css comment
 
 body {
   font-family: Arial, sans-serif;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   max-width: 800px;
 }
 
 div {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
+a {
+  &:link {
+    text-decoration: none;
+    color: blue;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: blue;
+  }
+}
+
+/* Main Content */
+
 #MainContent {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  /* padding-right: 5px;
-  padding-left: 5px; */
+  padding: 0px;
 }
 
 h1 {
   text-align: center;
-}
-
-header {
-  background-color: #d972ff;
-  height: 50px;
-}
-
-footer {
-  background-color: #ffb2e6;
 }
 
 #About {
@@ -67,30 +69,43 @@ footer {
   background-color: #8cffda;
 }
 
-a {
-  text-decoration: none;
+/* Header Styling */
+
+header {
+  background-color: #d972ff;
+  padding: 20px 0;
 }
 
-footer a {
-  background-color: #8447ff;
-  text-align: center;
-  color: white;
-  padding: 12px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px gray;
-}
+/* Footer Styling */
 
-footer a:hover {
-  background-color: purple;
+footer {
+  background-color: #ffb2e6;
 }
 
 #contactInfo ul {
   display: flex;
   justify-content: center;
   list-style-type: none;
-  gap: 10px;
+  gap: 20px;
+  padding: 0px;
 }
 
-#contactInfo ul a {
-  display: block;
+#contactInfo a {
+  background-color: #8447ff;
+  text-align: center;
+  padding: 12px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px gray;
+
+  &:hover {
+    background-color: purple;
+  }
+
+  &:link {
+    color: white;
+  }
+
+  &:visited {
+    color: white;
+  }
 }

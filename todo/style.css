@@ -1,0 +1,38 @@
+* {
+  background-color: #f0f0f0;
+
+  > * {
+    background-color: inherit;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+  background-color: lightgray;
+}
+
+h1 {
+  text-align: center;
+}
+
+#MainInteraction {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#InputBox {
+  width: 60%;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+#AddButton {
+  width: 20%;
+  background-color: green;
+  border-radius: 5px;
+  color: white;
+  padding: 12px;
+}
