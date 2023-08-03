@@ -1,5 +1,21 @@
 * {
   background-color: #f0f0f0;
+
+  > * {
+    background-color: inherit;
+  }
+}
+
+a {
+  &:link {
+    text-decoration: none;
+    color: blue;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: blue;
+  }
 }
 
 body {
@@ -13,12 +29,6 @@ h1 {
 
 h2 {
   text-align: center;
-}
-
-#Mouse {
-  justify-content: center;
-  display: flex;
-  gap: 20px;
 }
 
 #Container {
