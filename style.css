@@ -51,34 +51,25 @@ a {
   }
 }
 
-/* Main Content */
-
 #MainContent {
-  padding: 0px;
-}
-
-h1 {
-  text-align: center;
-}
-
-#About {
-  background-color: #87f1ff;
-}
-
-#Pages {
-  background-color: #8cffda;
+  background-color: #aaaaaa;
+  /* padding: 30px; */
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Header Styling */
 
-header {
+#LinkToMain {
+  border-radius: 20px 20px 0px 0px;
   background-color: #d972ff;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 /* Footer Styling */
 
-footer {
+#Links {
+  border-radius: 0px 0px 20px 20px;
   background-color: #ffb2e6;
 }
 
@@ -107,5 +98,34 @@ footer {
 
   &:visited {
     color: white;
+  }
+}
+
+/* Main Content */
+
+h1 {
+  text-align: center;
+}
+
+#About {
+  background-color: #87f1ff;
+}
+
+#Pages {
+  background-color: #87f1ff;
+
+  > ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    list-style-type: none;
+    padding: 0;
+
+    > li {
+      text-align: center;
+      background-color: #8cffda;
+      padding: 12px;
+      border-radius: 3px;
+    }
   }
 }
