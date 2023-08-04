@@ -1,0 +1,68 @@
+/* 
+https://coolors.co/73fbd3-44e5e7-59d2fe-4a8fe7-5c7aff 
+Aquamarine          #73fbd3
+Flourescent Cyan    #44e5e7
+Vivid sky Blue      #59d2fe
+Chefchaouen Blue    #4a8fe7
+Blue (Crayola)      #5c7aff
+
+Might need to change the last two text colours to white
+*/
+
+* {
+  margin-left: 0px;
+  margin-right: 0px;
+  /* margin: 0; */
+}
+
+#MainContent {
+  > div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+#AboutMe {
+  background-color: #73fbd3;
+
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+#Work {
+  background-color: #44e5e7;
+
+  .workExperience {
+    display: grid;
+  }
+}
+
+#Education {
+  background-color: #59d2fe;
+
+  > ul {
+    list-style: none;
+  }
+}
+
+#Skills {
+  background-color: #4a8fe7;
+}
+
+#Additional {
+  background-color: #5c7aff;
+}
+
+#LinkToMain {
+  background-color: coral;
+}
+
+#Links {
+  background-color: coral;
+}
