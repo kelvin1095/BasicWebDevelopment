@@ -52,24 +52,23 @@ a {
 }
 
 #MainContent {
-  background-color: #aaaaaa;
+  background-color: #f0f0f0;
   /* padding: 30px; */
-  border-radius: 20px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Header Styling */
 
 #LinkToMain {
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   background-color: #d972ff;
-  padding: 20px;
 }
 
 /* Footer Styling */
 
 #Links {
-  border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 10px 10px;
   background-color: #ffb2e6;
 }
 

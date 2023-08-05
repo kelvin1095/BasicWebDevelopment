@@ -19,17 +19,17 @@
   font-style: normal;
 }
 
-* {
+body {
+  margin: 0 auto;
   background-color: #f0f0f0;
-
-  > * {
-    background-color: inherit;
-  }
+  max-width: 800px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-body {
-  max-width: 600px;
-  margin: 20px auto;
+#MainContent {
+  background-color: #fdfdfd;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 h1 {

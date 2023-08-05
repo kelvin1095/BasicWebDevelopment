@@ -9,16 +9,14 @@ Blue (Crayola)      #5c7aff
 Might need to change the last two text colours to white
 */
 
-* {
-  margin-left: 0px;
-  margin-right: 0px;
-  /* margin: 0; */
+body {
+  margin: 0px;
 }
 
 #MainContent {
   > div {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 80px;
   }
 }
 
@@ -38,31 +36,110 @@ h1 {
 #Work {
   background-color: #44e5e7;
 
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+
+    > ul {
+      padding: 0;
+
+      > li {
+        margin: 10px 0;
+      }
+    }
+  }
+
   .workExperience {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    > h3 {
+      text-align: right;
+    }
+
+    > ul {
+      grid-column: span 2;
+      list-style: square;
+    }
   }
 }
 
 #Education {
   background-color: #59d2fe;
 
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+
+    > ul {
+      padding: 0;
+
+      > li {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+.education {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  > h3 {
+    grid-column: span 2;
+    text-align: right;
+  }
+
+  > h4 {
+    grid-column: span 3;
+  }
+
   > ul {
-    list-style: none;
+    grid-column: span 3;
+    list-style: square;
   }
 }
 
 #Skills {
   background-color: #4a8fe7;
+
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
 
 #Additional {
   background-color: #5c7aff;
+
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
 
 #LinkToMain {
   background-color: coral;
+  padding: 30px;
 }
 
 #Links {
   background-color: coral;
+  padding: 30px;
+}
+
+#ContactInfo {
+  text-align: center;
+
+  > a {
+    text-decoration: none;
+
+    &:link {
+      color: black;
+    }
+
+    &:visited {
+      color: black;
+    }
+  }
 }
