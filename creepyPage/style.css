@@ -1,5 +1,5 @@
 * {
-  background-color: #f0f0f0;
+  background-color: #d8d8d8;
 
   > * {
     background-color: inherit;
@@ -20,8 +20,15 @@ a {
 
 body {
   font-family: Arial, sans-serif;
+}
+
+#MainContent {
   margin: 0 auto;
   max-width: 800px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
