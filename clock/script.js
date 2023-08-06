@@ -1,32 +1,19 @@
-const monthName = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
+const monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const meridiem = ["AM", "PM"];
 
 const getTime = function () {
   const d = new Date();
-  let year = d.getFullYear();
-  let month = d.getMonth();
-  let day = d.getDate();
-  let dayOfWeek = d.getDay();
-  let hour = d.getHours().toString().padStart(2, "0");
-  let minute = d.getMinutes().toString().padStart(2, "0");
-  let seconds = d.getSeconds().toString().padStart(2, "0");
+  var year = d.getFullYear();
+  var month = d.getMonth();
+  var day = d.getDate();
+  var dayOfWeek = d.getDay();
+  var hour = d.getHours().toString().padStart(2, "0");
+  var minute = d.getMinutes().toString().padStart(2, "0");
+  var seconds = d.getSeconds().toString().padStart(2, "0");
 
   theDate = `${dayName[dayOfWeek]} ${day} ${monthName[month]} ${year}`;
-  theTime = `${hour}:${minute}:${seconds}`;
+  theTime = `${hour % 12 || 12}:${minute}:${seconds} ${meridiem[+(hour >= 12)]}`;
 
   document.querySelector("#Date").innerHTML = theDate;
   document.querySelector("#Time").innerHTML = theTime;
