@@ -19,24 +19,23 @@ Aquamarine      #8CFFDA
 This is an example of a css comment
 */
 
+/* https://unsplash.com/photos/M8qnX9fvpNs */
+
 /* Global styling */
-
-* {
-  background-color: #fafafa;
-
-  > * {
-    background-color: inherit;
-  }
-}
 
 body {
   font-family: Arial, sans-serif;
+  background-color: #fafafa;
   margin: 0 auto;
   max-width: 800px;
 }
 
 div {
   padding: 20px;
+}
+
+img {
+  max-width: 760px;
 }
 
 a {
