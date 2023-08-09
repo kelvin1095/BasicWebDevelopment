@@ -8,8 +8,49 @@
   </head>
   <body>
     <div id="MainContent">
-      <h1>Blackjack</h1>
-      <p>Rules:</p>
+      <header>
+        <div id="LinkToMain">
+          <a href="../index.html">Main Page</a>
+          This is the header section
+        </div>
+      </header>
+
+      <div id="AdminStuff">
+        <h1>Blackjack</h1>
+        <p>Rules:</p>
+        <ul>
+          <li>This would be single deck with continuous shuffling.</li>
+          <li>Each game has 5 players and a dealer</li>
+          <li>New game deals shuffled cards then deals card</li>
+          <li>Cards are dealt clockwise order, all player cards are face up. The dealer has the first card face up</li>
+          <li>Game checks if any hands hava blackjack</li>
+          <li>Player round commences. This goes clockwise</li>
+          <li>Your turn has two options: hit adds a card, stand finalises hand for the round</li>
+          <li>Dealer goes last</li>
+        </ul>
+      </div>
+
+      <div id="GameUI">
+        <h1>Play Game</h1>
+        <button onclick="ShuffleDeck()" id="NewGame">New Game</button>
+        <button onclick="dealCard()" id="Hit">Hit</button>
+        <button onclick="huh()" id="Stand">Stand</button>
+      </div>
+
+      <footer>
+        <div id="Links">
+          <h1>Keep in touch</h1>
+          <div id="ContactInfo">
+            <a href="https://github.com/kelvin1095">GitHub</a>
+            |
+            <a href="https://www.linkedin.com/in/kelvin-w-14679ab4">LinkedIn</a>
+            |
+            <a href="https://www.instagram.com/negativeprogress">Instagram</a>
+            |
+            <a href="https://www.threads.net/@negativeprogress">Threads</a>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
