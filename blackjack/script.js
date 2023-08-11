@@ -309,25 +309,59 @@ let playingDeck = deck;
 //   // Final check of who won goes here
 // }
 
+// Initialise Players and dealer
+const npc1 = PlayerProperties();
+const npc2 = PlayerProperties();
+const npc3 = PlayerProperties();
+const npc4 = PlayerProperties();
+const player = PlayerProperties();
+const dealer = DealerProperties();
+
+npc1.idTag = "NPC1";
+npc2.idTag = "NPC2";
+npc3.idTag = "NPC3";
+npc4.idTag = "NPC4";
+player.idTag = "Player";
+dealer.idTag = "Dealer";
+
+const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
+const npcs = [npc1, npc2, npc3, npc4, player];
+
+async function dealCardWithDelay(player, deck, delayTime) {
+  await delay(delayTime);
+  player.hand.push(dealCard(deck));
+  player.updateHandStats();
+  player.clearDisplay();
+  player.displayCards();
+}
+
+async function performNPCTurnWithDelay(npc, deck, delayTime) {
+  await delay(delayTime);
+  console.log(npc.idTag + " turn");
+  while (npc.hand.length < 5 && npc.point < 17) {
+    npc.hitFunction(deck);
+    npc.updateHandStats();
+    npc.clearDisplay();
+    npc.displayCards();
+    await delay(delayTime);
+  }
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function newGame() {
   const message = document.querySelector("#Message");
-  // Initialise Players and dealer
-  const npc1 = PlayerProperties();
-  const npc2 = PlayerProperties();
-  const npc3 = PlayerProperties();
-  const npc4 = PlayerProperties();
-  const player = PlayerProperties();
-  const dealer = DealerProperties();
+  const newGameButton = document.querySelector("#NewGameButton");
 
-  npc1.idTag = "NPC1";
-  npc2.idTag = "NPC2";
-  npc3.idTag = "NPC3";
-  npc4.idTag = "NPC4";
-  player.idTag = "Player";
-  dealer.idTag = "Dealer";
+  // Clear display
+  for (let player of allPlayers) {
+    player.clearDisplay();
+    player.hand = [];
+  }
 
-  const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
-  const npcs = [npc1, npc2, npc3, npc4, player];
+  newGameButton.innerHTML = "";
 
   // Shuffle the deck
   let shuffledDeck = shuffleDeck(playingDeck);
@@ -352,7 +386,7 @@ async function newGame() {
     await performNPCTurnWithDelay(npc, shuffledDeck, 1000);
   }
 
-  console.log("npc completed turn with success");
+  console.log("all npcs completed turn with success");
   console.log(shuffledDeck.length);
 
   // Dealer has the final turn
@@ -366,28 +400,7 @@ async function newGame() {
   }
 
   // Check who has won goes here
-}
+  message.innerHTML = `Game is finished (Who has won?)`;
 
-async function dealCardWithDelay(player, deck, delayTime) {
-  await delay(delayTime);
-  player.hand.push(dealCard(deck));
-  player.updateHandStats();
-  player.clearDisplay();
-  player.displayCards();
-}
-
-async function performNPCTurnWithDelay(npc, deck, delayTime) {
-  await delay(delayTime);
-  console.log(npc.idTag + " turn");
-  while (npc.hand.length < 5 && npc.point < 17) {
-    npc.hitFunction(deck);
-    npc.updateHandStats();
-    npc.clearDisplay();
-    npc.displayCards();
-    await delay(delayTime);
-  }
-}
-
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  newGameButton.innerHTML = `<button onclick="newGame()" id="NewGame">New Game</button>`;
 }
