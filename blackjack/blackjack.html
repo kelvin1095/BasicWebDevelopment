@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="MainContent">
+      <header>
+        <div id="LinkToMain">
+          <a href="../index.html">Main Page</a>
+          This is the header section
+        </div>
+      </header>
+
+      <div id="AdminStuff">
+        <h1>Blackjack</h1>
+        <p>Rules:</p>
+        <ul>
+          <li>This game is single deck. The deck is shuffled before the start of every new game.</li>
+          <li>Each game has 5 players (4 computer players) and a dealer.</li>
+          <li>Cards are dealt in a clockwise order.</li>
+          <li>All player cards are face up. The dealer has the first card face up.</li>
+          <li>After cards have been dealt, the game checks if any players or the dealer has blackjack</li>
+          <li>After blackjack check, player round commences. This goes clockwise.</li>
+          <li>Your turn has two options: hit adds a card, stand finalises hand for the round</li>
+          <li>After the final player's turn, the dealer will reveal the second card.</li>
+          <li>The dealer draws until they have a score of 17 or higher.</li>
+        </ul>
+        <h2>Notes</h2>
+        <p>
+          This does not deal with special scenarios such as double down, splitting, surrender or insurance. Let's get a
+          basic game going first before dealing with special scenarios. Insurance is avaliable when the dealer's face up
+          card is an ace. Double down is only avaliable on the first turn, the player gets one more card and ends their
+          turn. Splitting is when you start with a pair. You can split up to three times.
+        </p>
+        <p>
+          The computer controlled players behave predictably. If the sum of their cards are below a certain threshold,
+          they will hit.
+        </p>
+        <p>
+          Another random function to deal cards would be better, at the moment its possible to see the next card using
+          the browser console.
+        </p>
+        <p>The dealer's second card is shown when it should be hidden.</p>
+        <p>There is an issue where if someone is dealt two aces it gives an error.</p>
+      </div>
+
+      <div id="GameUI">
+        <h1>Play Game</h1>
+        <button onclick="newGame()" id="NewGame">New Game</button>
+        <div id="CardUI">
+          <div id="NPC1">
+            <h3>NPC1</h3>
+            <p id="NPC1Point"></p>
+            <ul id="NPC1Hand"></ul>
+          </div>
+          <div id="NPC2">
+            <h3>NPC2</h3>
+            <p id="NPC2Point"></p>
+            <ul id="NPC2Hand"></ul>
+          </div>
+          <div id="NPC3">
+            <h3>NPC3</h3>
+            <p id="NPC3Point"></p>
+            <ul id="NPC3Hand"></ul>
+          </div>
+          <div id="NPC4">
+            <h3>NPC4</h3>
+            <p id="NPC4Point"></p>
+            <ul id="NPC4Hand"></ul>
+          </div>
+          <div id="Player">
+            <h3>NPC5</h3>
+            <p id="PlayerPoint"></p>
+            <ul id="PlayerHand"></ul>
+          </div>
+          <div id="Dealer">
+            <h3>Dealer</h3>
+            <p id="DealerPoint"></p>
+            <ul id="DealerHand"></ul>
+          </div>
+          <div id="Message"></div>
+        </div>
+
+        <button onclick="dealCard()" id="Hit">Hit</button>
+        <button onclick="dealerTurn()" id="Stand">Stand</button>
+      </div>
+
+      <div id="ProbabilityTable">
+        <h1>Probability of next card</h1>
+      </div>
+
+      <footer>
+        <div id="Links">
+          <h1>Keep in touch</h1>
+          <div id="ContactInfo">
+            <a href="https://github.com/kelvin1095">GitHub</a>
+            |
+            <a href="https://www.linkedin.com/in/kelvin-w-14679ab4">LinkedIn</a>
+            |
+            <a href="https://www.instagram.com/negativeprogress">Instagram</a>
+            |
+            <a href="https://www.threads.net/@negativeprogress">Threads</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
