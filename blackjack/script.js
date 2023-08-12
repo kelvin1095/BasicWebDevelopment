@@ -359,6 +359,7 @@ async function newGame() {
   for (let player of allPlayers) {
     player.clearDisplay();
     player.hand = [];
+    player.point = 0;
   }
 
   newGameButton.innerHTML = "";
