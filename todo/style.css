@@ -32,20 +32,20 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 20px;
-}
 
-#InputBox {
-  width: 60%;
-  padding: 12px;
-  border-radius: 5px;
-}
+  > #InputBox {
+    width: 60%;
+    padding: 12px;
+    border-radius: 5px;
+  }
 
-#AddButton {
-  width: 20%;
-  background-color: green;
-  border-radius: 5px;
-  color: white;
-  padding: 12px;
+  > #AddButton {
+    width: 20%;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+  }
 }
 
 #AddedItems {
@@ -53,8 +53,44 @@ h1 {
   padding: 0;
 
   > li {
-    color: green;
     padding: 10px;
+  }
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  > .addedTask {
+    padding: 12px;
+    width: 60%;
+  }
+
+  > .deleteButton {
+    width: 15%;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+  }
+
+  > .completeButton {
+    width: 15%;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+    padding: 12px;
+  }
+}
+
+.completed {
+  > .task {
+    > .addedTask {
+      text-decoration: line-through;
+      color: gray;
+    }
   }
 }
 
