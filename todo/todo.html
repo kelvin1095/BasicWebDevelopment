@@ -7,8 +7,6 @@
     <script src="todo.js" defer></script>
   </head>
 
-  <!-- A marked as complete as well as a delete button would probably be good -->
-
   <body>
     <div id="MainContent">
       <header>
@@ -17,13 +15,16 @@
       </header>
 
       <h1>To-Do List</h1>
+      <h2>Enter Task:</h2>
       <div id="MainInteraction">
         <input type="text" placeholder="Enter Task Here..." id="InputBox" />
         <button onclick="addTask()" id="AddButton">Add Task</button>
       </div>
-      <ul id="AddedItems"></ul>
-      <p>Added Tasks Appear Here</p>
 
+      <h2>Added Tasks:</h2>
+      <ul id="AddedItems"></ul>
+
+      <h2>Notes:</h2>
       <p>Refreshing will reset your todo list</p>
 
       <footer>
