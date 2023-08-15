@@ -46,39 +46,39 @@ playDeckAlt = shuffleDeck(deckAlt);
 
 //////////////////////////////////////////////////
 
-var testHand = [];
+// var testHand = [];
 
-testHand[0] = playDeckAlt.pop();
-testHand[1] = playDeckAlt.pop();
-testHand[2] = playDeckAlt.pop();
-testHand[3] = playDeckAlt.pop();
+// testHand[0] = playDeckAlt.pop();
+// testHand[1] = playDeckAlt.pop();
+// // testHand[2] = playDeckAlt.pop();
+// // testHand[3] = playDeckAlt.pop();
 
-console.log(testHand);
-console.log(testHand.length);
+// console.log(testHand);
+// console.log(testHand.length);
 
-var points = testHand.reduce((accumulate, { value }) => accumulate + value, 0);
-var noOfAces = testHand.reduce((accumulate, { rank }) => accumulate + (rank == "Ace"), 0);
-console.log(points);
-console.log(noOfAces);
+// var points = testHand.reduce((accumulate, { value }) => accumulate + value, 0);
+// var noOfAces = testHand.reduce((accumulate, { rank }) => accumulate + (rank == "Ace"), 0);
+// console.log(points);
+// console.log(noOfAces);
 
-const cardList = document.getElementById("NPC1Hand");
-testHand.forEach(({ name }) => {
-  const li = document.createElement("li");
-  li.textContent = name;
-  cardList.appendChild(li);
-});
+// const cardList = document.getElementById("NPC1Hand");
+// testHand.forEach(({ name }) => {
+//   const li = document.createElement("li");
+//   li.textContent = name;
+//   cardList.appendChild(li);
+// });
 
-const point = document.getElementById("NPC1Point");
-point.innerHTML = "Current Point: " + points;
+// const point = document.getElementById("NPC1Point");
+// point.innerHTML = "Current Point: " + points;
 
-// Blackjack Check
-var cards = testHand.map(({ rank }) => rank);
-isBlackJack =
-  cards.length == 2 &&
-  cards.includes("Ace") &&
-  (cards.includes("King") || cards.includes("Queen") || cards.includes("Jack") || cards.includes("10"));
-console.log(cards);
-console.log(isBlackJack);
+// // Blackjack Check
+// var cards = testHand.map(({ rank }) => rank);
+// isBlackJack =
+//   cards.length == 2 &&
+//   cards.includes("Ace") &&
+//   (cards.includes("King") || cards.includes("Queen") || cards.includes("Jack") || cards.includes("10"));
+// console.log(cards);
+// console.log(isBlackJack);
 
 //////////////////////////////////////////////////
 
@@ -114,7 +114,7 @@ function PlayerPropertiesAlt() {
       }
 
       // Check for Blackjack
-      var cards = testHand.map(({ rank }) => rank);
+      var cards = this.hand.map(({ rank }) => rank);
       if (
         cards.length == 2 &&
         cards.includes("Ace") &&
@@ -144,7 +144,7 @@ function PlayerPropertiesAlt() {
       if (this.status == "Playing") {
         point.innerHTML = "Current Point: " + this.point;
       } else {
-        point.innerHTML = this.status;
+        point.innerHTML = this.result;
       }
     },
     clearDisplay: function () {
@@ -158,7 +158,7 @@ function PlayerPropertiesAlt() {
     },
     standFunction: function () {
       this.status = "Finish";
-      this.result = this.point.toString();
+      this.result = "Final Score: " + this.point.toString();
     },
     resetPlayer: function () {
       this.status = "Playing";
@@ -279,6 +279,9 @@ dealer.idTag = "Dealer";
 const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
 const npcs = [npc1, npc2, npc3, npc4, player];
 
+// Important Parameters
+const delayTime = 1000;
+
 async function dealCardWithDelay(player, deck, delayTime) {
   await delay(delayTime);
   player.hand.push(dealCard(deck));
@@ -289,7 +292,6 @@ async function dealCardWithDelay(player, deck, delayTime) {
 
 async function performNPCTurnWithDelay(npc, deck, delayTime) {
   await delay(delayTime);
-  console.log(npc.idTag + " turn");
   if (npc.hand.length < 5 && npc.point < 17) {
     npc.hitFunction(deck);
     npc.updateHandStats();
@@ -298,11 +300,22 @@ async function performNPCTurnWithDelay(npc, deck, delayTime) {
     await delay(delayTime);
   } else {
     npc.standFunction();
+    npc.clearDisplay();
+    npc.displayCards();
   }
 }
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const continueButton = document.getElementById("continueButton");
+async function waitForUserInput() {
+  return new Promise((resolve) => {
+    continueButton.addEventListener("click", () => {
+      resolve();
+    });
+  });
 }
 
 async function newGame() {
@@ -321,40 +334,46 @@ async function newGame() {
   let shuffledDeck = shuffleDeck(deckAlt);
 
   console.log("players initialised with success");
-  console.log(shuffledDeck.length);
   message.innerHTML = "Dealing out cards";
 
+  // Deal initial two cards
   const initialDeal = 2;
   for (let i = 0; i < initialDeal; i++) {
     for (let player of allPlayers) {
-      await dealCardWithDelay(player, shuffledDeck, 1000);
+      await dealCardWithDelay(player, shuffledDeck, delayTime);
     }
   }
 
   console.log("cards dealt with success");
-  console.log(shuffledDeck.length);
 
   // Each NPC has their turn
   for (const npc of npcs) {
     message.innerHTML = `${npc.idTag}'s turn`;
-    await performNPCTurnWithDelay(npc, shuffledDeck, 1000);
+    while (npc.status == "Playing") {
+      await performNPCTurnWithDelay(npc, shuffledDeck, delayTime);
+    }
   }
 
   console.log("all npcs completed turn with success");
-  console.log(shuffledDeck.length);
+
+  // Player's turn here
+
+  message.innerHTML = `Dealer's turn`;
+  await waitForUserInput();
 
   // Dealer has the final turn
-  while (dealer.hand.length < 5 && dealer.truePoint < 17) {
-    message.innerHTML = `Dealer's turn`;
+  while (dealer.hand.length < 5 && dealer.point < 17) {
     dealer.hitFunction(shuffledDeck);
+    console.log(dealer.hand);
     dealer.updateHandStats();
     dealer.clearDisplay();
-    dealer.displayCardsFinal();
+    // dealer.displayCardsFinal();
+    dealer.displayCards();
     await delay(1000);
   }
 
   // Check who has won goes here
-  message.innerHTML = `Game is finished (Who has won?)`;
+  message.innerHTML = `Game is finished`;
 
   newGameButton.innerHTML = `<button onclick="newGame()" id="NewGame">New Game</button>`;
 }

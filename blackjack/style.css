@@ -31,6 +31,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 #CardUI {
   display: grid;
   gap: 10px;
@@ -72,4 +76,6 @@ h1 {
 #Message {
   grid-column: 3;
   grid-row: 2;
+  text-align: center;
+  padding: 40% 0px;
 }

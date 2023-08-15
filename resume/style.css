@@ -9,15 +9,24 @@ Blue (Crayola)      #5c7aff
 Might need to change the last two text colours to white
 */
 
+/* @import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@500&family=Ysabeau:wght@500&display=swap");
+
 body {
-  font-family: constantia;
+  font-family: "Ysabeau", serif;
+  font-size: 120%;
+  color: rgb(10, 10, 10);
   margin: 0px;
+}
+
+:is(h1, h2, h3, h4) {
+  font-family: "Cormorant", serif;
 }
 
 #MainContent {
   > div {
     padding-top: 40px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
   }
 }
 
@@ -53,6 +62,7 @@ h1 {
   .workExperience {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-items: center;
 
     > h3 {
       text-align: right;
@@ -85,6 +95,7 @@ h1 {
 .education {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: center;
 
   > h3 {
     grid-column: span 2;
@@ -95,9 +106,12 @@ h1 {
     grid-column: span 3;
   }
 
-  > ul {
+  > .educationDescription {
     grid-column: span 3;
-    list-style: square;
+
+    > ul {
+      list-style: square;
+    }
   }
 }
 
