@@ -32,6 +32,7 @@ body {
 
 h1 {
   text-align: center;
+  font-size: 40px;
 }
 
 #AboutMe {
@@ -97,8 +98,13 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
 
-  > h3 {
+  > h2 {
     grid-column: span 2;
+    font-size: 35px;
+  }
+
+  > h3 {
+    grid-column: span 1;
     text-align: right;
   }
 
