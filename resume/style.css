@@ -32,7 +32,7 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 40px;
+  font-size: 45px;
 }
 
 #AboutMe {
@@ -64,6 +64,10 @@ h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
+
+    > h2 {
+      font-size: 35px;
+    }
 
     > h3 {
       text-align: right;
@@ -110,6 +114,7 @@ h1 {
 
   > h4 {
     grid-column: span 3;
+    margin: 5px;
   }
 
   > .educationDescription {
@@ -117,6 +122,10 @@ h1 {
 
     > ul {
       list-style: square;
+
+      > ul {
+        list-style: circle;
+      }
     }
   }
 }
