@@ -37,10 +37,10 @@ h3 {
 
 #CardUI {
   display: grid;
-  gap: 10px;
+  gap: 5px;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  height: 600px;
+  height: 650px;
 }
 
 #Dealer {
@@ -77,5 +77,14 @@ h3 {
   grid-column: 3;
   grid-row: 2;
   text-align: center;
-  padding: 40% 0px;
+}
+
+#Results {
+  grid-column: 4;
+  grid-row: 2;
+
+  > #ResultList {
+    list-style: none;
+    padding: 0;
+  }
 }

@@ -29,13 +29,14 @@
           <li>After the final player's turn, the dealer will reveal the second card.</li>
           <li>The dealer draws until they have a score of 17 or higher.</li>
         </ul>
-        <h2>Notes</h2>
-        <p>
-          This does not deal with special scenarios such as double down, splitting, surrender or insurance. Insurance is
-          avaliable when the dealer's face up card is an ace. Double down is only avaliable on the first turn, the
-          player gets one more card and ends their turn. Splitting is when you start with a pair. You can split up to
-          three times.
-        </p>
+        <h2>Notes:</h2>
+        <p>This does not deal with special scenarios such as double down, splitting, surrender or insurance.</p>
+        <ul>
+          <li>Insurance is avaliable when the dealer's face up card is an ace.</li>
+          <li>Double down is only avaliable on the first turn, the player gets one more card and ends their turn.</li>
+          <li>Splitting is when you start with a pair. You can split up to three times.</li>
+          <li>Surrendering an option after all cards have been dealt out</li>
+        </ul>
         <p>
           The computer controlled players behave predictably. If the sum of their cards are below a certain threshold,
           they will hit.
@@ -44,8 +45,7 @@
           Another random function to deal cards would be better, at the moment its possible to see the next card using
           the browser console.
         </p>
-        <p>The dealer's second card should be revealed in a second stamp.</p>
-        <p>There is an issue where if someone is dealt two aces it gives an error.</p>
+        <p>The dealer's second card is shown and should be hidden until the dealer's turn.</p>
       </div>
 
       <div id="GameUI">
@@ -83,11 +83,12 @@
             <ul id="DealerHand"></ul>
           </div>
           <div id="Message"></div>
+          <div id="Results"><ul id="ResultList"></ul></div>
         </div>
 
-        <!-- <button onclick="dealCard()" id="Hit">Hit</button>
-        <button onclick="dealerTurn()" id="Stand">Stand</button> -->
-        <button id="continueButton">continue</button>
+        <button id="HitButton">Hit</button>
+        <button id="StandButton">Stand</button>
+        <!-- <button id="ContinueButton">continue</button> -->
       </div>
 
       <div id="ProbabilityTable">

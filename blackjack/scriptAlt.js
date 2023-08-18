@@ -99,6 +99,7 @@ function PlayerPropertiesAlt() {
     action: ["Hit", "Stand"], // This will be split, double down, surrender or insurance option
     status: "Playing", // This will be Playing or Finished
     result: "", // This will be Bust, Blackjack or the score at stand
+    final: "", // This will be to indicate if a player win/lose/tie and how
     idTag: "",
     updateHandStats: function () {
       // Count points
@@ -160,8 +161,28 @@ function PlayerPropertiesAlt() {
       this.status = "Finish";
       this.result = "Final Score: " + this.point.toString();
     },
+    finalFunction: function (dealerResult, dealerPoint) {
+      if (dealerResult == "Blackjack" && this.result == "Blackjack") {
+        this.final = "Tie, blackjack";
+      } else if (dealerResult == "Blackjack") {
+        this.final = "Lose, dealer blackjack";
+      } else if (this.result == "Blackjack") {
+        this.final = "Win, blackjack";
+      } else if (this.result == "Bust") {
+        this.final = "Lose, bust";
+      } else if (dealerResult == "Bust" && this.result !== "Bust") {
+        this.final = "Win, dealer bust";
+      } else if (dealerPoint > this.point) {
+        this.final = "Lose, points";
+      } else if (dealerPoint < this.point) {
+        this.final = "Win, points";
+      } else if (dealerPoint == this.point) {
+        this.final = "Tie, points";
+      }
+    },
     resetPlayer: function () {
       this.status = "Playing";
+      this.result = "";
       this.point = 0;
       this.noOfAces = 0;
       this.hand = [];
@@ -280,7 +301,7 @@ const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
 const npcs = [npc1, npc2, npc3, npc4, player];
 
 // Important Parameters
-const delayTime = 1000;
+const delayTime = 200;
 
 async function dealCardWithDelay(player, deck, delayTime) {
   await delay(delayTime);
@@ -309,7 +330,8 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const continueButton = document.getElementById("continueButton");
+const hitButton = document.getElementById("HitButton");
+const standButton = document.getElementById("StandButton");
 async function waitForUserInput() {
   return new Promise((resolve) => {
     continueButton.addEventListener("click", () => {
@@ -321,12 +343,14 @@ async function waitForUserInput() {
 async function newGame() {
   const message = document.querySelector("#Message");
   const newGameButton = document.querySelector("#NewGameButton");
+  const resultDisplay = document.getElementById("ResultList");
 
   // Clear display
   for (let player of allPlayers) {
     player.clearDisplay();
     player.resetPlayer();
   }
+  resultDisplay.innerHTML = "";
 
   newGameButton.innerHTML = "";
 
@@ -347,7 +371,7 @@ async function newGame() {
   console.log("cards dealt with success");
 
   // Each NPC has their turn
-  for (const npc of npcs) {
+  for (let npc of npcs) {
     message.innerHTML = `${npc.idTag}'s turn`;
     while (npc.status == "Playing") {
       await performNPCTurnWithDelay(npc, shuffledDeck, delayTime);
@@ -357,23 +381,37 @@ async function newGame() {
   console.log("all npcs completed turn with success");
 
   // Player's turn here
+  // await waitForUserInput();
 
   message.innerHTML = `Dealer's turn`;
-  await waitForUserInput();
 
   // Dealer has the final turn
   while (dealer.hand.length < 5 && dealer.point < 17) {
     dealer.hitFunction(shuffledDeck);
-    console.log(dealer.hand);
     dealer.updateHandStats();
     dealer.clearDisplay();
-    // dealer.displayCardsFinal();
     dealer.displayCards();
-    await delay(1000);
+    await delay(delayTime);
   }
 
   // Check who has won goes here
   message.innerHTML = `Game is finished`;
+  let playerScores = [];
+  let i = 0;
+  for (let npc of npcs) {
+    npc.finalFunction(dealer.result, dealer.point);
+    playerScores[i] = { player: npc.idTag, result: npc.final };
+    i++;
+  }
+
+  // console.log(dealer.result);
+  console.log(playerScores);
+
+  playerScores.forEach(({ player, result }) => {
+    const li = document.createElement("li");
+    li.textContent = `${player}: ${result}`;
+    resultDisplay.appendChild(li);
+  });
 
   newGameButton.innerHTML = `<button onclick="newGame()" id="NewGame">New Game</button>`;
 }
