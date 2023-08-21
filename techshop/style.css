@@ -1,0 +1,102 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: rgb(85, 85, 85);
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+a {
+  &:link {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+  }
+}
+
+/* 
+What I want to do:
+ - Inifite scrolling
+ - Timed auto scroll
+After the above, then can enable the overflow:hidden to hide the scroll bar
+I want  to do the same with the subscription section
+*/
+
+#About {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  /* overflow: hidden; */
+
+  height: 350px;
+  border-style: dotted;
+  text-align: center;
+  margin: 0 0 5px;
+
+  > .announcements {
+    border-style: groove;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: calc(100% - 5px);
+    scroll-snap-align: start;
+  }
+}
+
+#Products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 1000px;
+  gap: 5px;
+
+  > .product {
+    border-style: dotted;
+    text-align: center;
+  }
+}
+
+#Subscriptions {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 5px;
+
+  height: 400px;
+  border-style: dotted;
+  text-align: center;
+  margin: 5px 0;
+
+  > .subscription {
+    border-style: groove;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: calc(50% - 7.5px);
+    scroll-snap-align: center;
+  }
+}
+
+#Navigate {
+  text-align: center;
+  padding: 20px;
+}
+
+.NavigateItem {
+  padding: 20px;
+}
+
+#Links {
+  margin: 50px;
+}
+
+#Links {
+  text-align: center;
+  > h1 {
+    font-size: 20px;
+  }
+}

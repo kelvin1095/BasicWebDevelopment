@@ -31,12 +31,25 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
+#NewGameButton {
+  height: 50px;
+  text-align: center;
+
+  > #NewGame {
+    padding: 15px;
+  }
+}
+
 #CardUI {
   display: grid;
-  gap: 10px;
+  gap: 5px;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(5, 1fr);
-  height: 600px;
+  height: 650px;
 }
 
 #Dealer {
@@ -72,4 +85,34 @@ h1 {
 #Message {
   grid-column: 3;
   grid-row: 2;
+  text-align: center;
+}
+
+#Results {
+  grid-column: 4;
+  grid-row: 2;
+
+  > #ResultList {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+#ActionButtons {
+  text-align: center;
+
+  > button {
+    padding: 20px;
+    width: 100px;
+    margin: 0 20px;
+    border-radius: 4px;
+  }
+
+  > #HitButton {
+    background-color: green;
+  }
+
+  > #StandButton {
+    background-color: red;
+  }
 }

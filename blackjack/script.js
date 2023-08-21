@@ -2,10 +2,6 @@
 const suits = ["Spades", "Hearts", "Clovers", "Diamonds"];
 const ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
 
-const deck = suits.flatMap((suit) => {
-  return ranks.map((rank) => `${rank} of ${suit}`);
-});
-
 // Define card points
 const cardValue = {
   2: 2,
@@ -22,6 +18,18 @@ const cardValue = {
   King: 10,
   Ace: 11,
 };
+
+const deck = suits.flatMap((suit) => {
+  return ranks.map((rank) => `${rank} of ${suit}`);
+});
+
+const deckAlt = suits.flatMap((suit) => {
+  return ranks.map((rank) => ({
+    name: `${rank} of ${suit}`,
+    suit: suit,
+    value: cardValue[rank],
+  }));
+});
 
 // console.log(deck);
 
@@ -77,11 +85,11 @@ function hit(player) {
 function PlayerProperties() {
   return {
     hand: [],
-    action: ["Hit", "Stand"],
-    point: 0,
-    status: "Playing",
-    idTag: "",
     noOfAces: 0,
+    point: 0,
+    action: ["Hit", "Stand"], // This will be split, double down, surrender or insurance option
+    status: "Playing", // This will be Playing, Bust, Blackjack or Stand
+    idTag: "",
     updateHandStats: function () {
       // Count points
       this.point = this.hand
@@ -141,6 +149,12 @@ function PlayerProperties() {
     },
     hitFunction: function (deck) {
       this.hand.push(dealCard(deck));
+    },
+    resetPlayer: function () {
+      this.status = "Playing";
+      this.point = 0;
+      this.noOfAces = 0;
+      this.hand = [];
     },
   };
 }
@@ -228,6 +242,12 @@ function DealerProperties() {
     },
     hitFunction: function (deck) {
       this.hand.push(dealCard(deck));
+    },
+    resetPlayer: function () {
+      this.status = "Playing";
+      this.point = 0;
+      this.noOfAces = 0;
+      this.hand = [];
     },
   };
 }
@@ -358,8 +378,7 @@ async function newGame() {
   // Clear display
   for (let player of allPlayers) {
     player.clearDisplay();
-    player.hand = [];
-    player.point = 0;
+    player.resetPlayer();
   }
 
   newGameButton.innerHTML = "";

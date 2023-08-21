@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <title>Blackjack</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script src="scriptAlt.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      sizes="any"
+      href="data:image/svg+xml,&#x3C;svg xmlns=&#x22;http://www.w3.org/2000/svg&#x22; viewBox=&#x22;0 0 100 100&#x22;&#x3E;&#x3C;text y=&#x22;.9em&#x22; font-size=&#x22;90&#x22;&#x3E;&#x1F0CF;&#x3C;/text&#x3E;&#x3C;/svg&#x3E;"
+    />
   </head>
   <body>
     <div id="MainContent">
@@ -29,23 +35,23 @@
           <li>After the final player's turn, the dealer will reveal the second card.</li>
           <li>The dealer draws until they have a score of 17 or higher.</li>
         </ul>
-        <h2>Notes</h2>
+        <h2>Notes:</h2>
+        <p>This does not deal with special scenarios such as double down, splitting, surrender or insurance.</p>
+        <ul>
+          <li>Insurance is avaliable when the dealer's face up card is an ace.</li>
+          <li>Double down is only avaliable on the first turn, the player gets one more card and ends their turn.</li>
+          <li>Splitting is when you start with a pair. You can split up to three times.</li>
+          <li>Surrendering an option after all cards have been dealt out</li>
+        </ul>
         <p>
-          This does not deal with special scenarios such as double down, splitting, surrender or insurance. Let's get a
-          basic game going first before dealing with special scenarios. Insurance is avaliable when the dealer's face up
-          card is an ace. Double down is only avaliable on the first turn, the player gets one more card and ends their
-          turn. Splitting is when you start with a pair. You can split up to three times.
-        </p>
-        <p>
-          The computer controlled players behave predictably. If the sum of their cards are below a certain threshold,
-          they will hit.
+          The computer controlled players behave predictably. If their points are below a certain threshold, they will
+          hit.
         </p>
         <p>
           Another random function to deal cards would be better, at the moment its possible to see the next card using
           the browser console.
         </p>
-        <p>The dealer's second card should be revealed in a second stamp.</p>
-        <p>There is an issue where if someone is dealt two aces it gives an error.</p>
+        <p>The case where the dealer draws blackjack is not yet finished.</p>
       </div>
 
       <div id="GameUI">
@@ -73,7 +79,7 @@
             <ul id="NPC4Hand"></ul>
           </div>
           <div id="Player">
-            <h3>NPC5</h3>
+            <h3>Player</h3>
             <p id="PlayerPoint"></p>
             <ul id="PlayerHand"></ul>
           </div>
@@ -83,10 +89,14 @@
             <ul id="DealerHand"></ul>
           </div>
           <div id="Message"></div>
+          <div id="Results"><ul id="ResultList"></ul></div>
         </div>
 
-        <button onclick="dealCard()" id="Hit">Hit</button>
-        <button onclick="dealerTurn()" id="Stand">Stand</button>
+        <div id="ActionButtons">
+          <button id="HitButton">Hit</button>
+          <button id="StandButton">Stand</button>
+        </div>
+        <!-- <button id="ContinueButton">continue</button> -->
       </div>
 
       <div id="ProbabilityTable">
