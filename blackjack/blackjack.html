@@ -5,6 +5,12 @@
     <title>Blackjack</title>
     <link rel="stylesheet" href="style.css" />
     <script src="scriptAlt.js" defer></script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      sizes="any"
+      href="data:image/svg+xml,&#x3C;svg xmlns=&#x22;http://www.w3.org/2000/svg&#x22; viewBox=&#x22;0 0 100 100&#x22;&#x3E;&#x3C;text y=&#x22;.9em&#x22; font-size=&#x22;90&#x22;&#x3E;&#x1F0CF;&#x3C;/text&#x3E;&#x3C;/svg&#x3E;"
+    />
   </head>
   <body>
     <div id="MainContent">
@@ -38,14 +44,14 @@
           <li>Surrendering an option after all cards have been dealt out</li>
         </ul>
         <p>
-          The computer controlled players behave predictably. If the sum of their cards are below a certain threshold,
-          they will hit.
+          The computer controlled players behave predictably. If their points are below a certain threshold, they will
+          hit.
         </p>
         <p>
           Another random function to deal cards would be better, at the moment its possible to see the next card using
           the browser console.
         </p>
-        <p>The dealer's second card is shown and should be hidden until the dealer's turn.</p>
+        <p>The case where the dealer draws blackjack is not yet finished.</p>
       </div>
 
       <div id="GameUI">
@@ -73,7 +79,7 @@
             <ul id="NPC4Hand"></ul>
           </div>
           <div id="Player">
-            <h3>NPC5</h3>
+            <h3>Player</h3>
             <p id="PlayerPoint"></p>
             <ul id="PlayerHand"></ul>
           </div>
@@ -86,8 +92,10 @@
           <div id="Results"><ul id="ResultList"></ul></div>
         </div>
 
-        <button id="HitButton">Hit</button>
-        <button id="StandButton">Stand</button>
+        <div id="ActionButtons">
+          <button id="HitButton">Hit</button>
+          <button id="StandButton">Stand</button>
+        </div>
         <!-- <button id="ContinueButton">continue</button> -->
       </div>
 
