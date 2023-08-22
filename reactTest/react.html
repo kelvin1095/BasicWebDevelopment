@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>To-Do List</title>
+    <title>React Page</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="todo.js" defer></script>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <!-- Path to React development build -->
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <!-- Path to ReactDOM development build -->
+    <script src="reactScript.js" type="module" defer></script>
   </head>
 
   <body>
     <div id="MainContent">
       <header>
-        <a href="../index.html">Main Page</a>
-        This is the header section
+        <div id="LinkToMain">
+          <a href="index.html">Main Page</a>
+        </div>
       </header>
 
       <main>
-        <h1>To-Do List</h1>
-        <h2>Enter Task:</h2>
-        <div id="MainInteraction">
-          <input type="text" placeholder="Enter Task Here..." id="InputBox" />
-          <button onclick="addTask()" id="AddButton">Add Task</button>
-        </div>
-
-        <h2>Added Tasks:</h2>
-        <ul id="AddedItems"></ul>
-
-        <h2>Notes:</h2>
-        <p>Refreshing will reset your todo list</p>
+        <div id="about"></div>
       </main>
 
       <footer>
