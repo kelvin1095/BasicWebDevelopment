@@ -368,6 +368,7 @@ async function newGame() {
   let shuffledDeck = shuffleDeck(playDeck);
 
   console.log("players initialised with success");
+  console.log(shuffledDeck.length);
   message.innerHTML = "Dealing out cards";
 
   // Deal initial two cards
@@ -401,6 +402,7 @@ async function newGame() {
   }
 
   console.log("all npcs completed turn with success");
+  console.log(shuffledDeck.length);
   await delay(delayTime);
 
   // Player's turn here
