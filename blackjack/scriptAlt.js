@@ -368,7 +368,6 @@ async function newGame() {
   let shuffledDeck = shuffleDeck(playDeck);
 
   console.log("players initialised with success");
-  console.log(shuffledDeck.length);
   message.innerHTML = "Dealing out cards";
 
   // Deal initial two cards
@@ -380,7 +379,6 @@ async function newGame() {
   }
 
   // Dealer Blackjack Check
-  console.log(dealer.hand[0].name, dealer.hand[1].name);
   if (dealer.result === "Blackjack") {
     message.innerHTML = "Dealer has Blackjack. Game Over!";
     dealer.clearDisplay();
@@ -402,7 +400,6 @@ async function newGame() {
   }
 
   console.log("all npcs completed turn with success");
-  console.log(shuffledDeck.length);
   await delay(delayTime);
 
   // Player's turn here
