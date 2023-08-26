@@ -21,11 +21,12 @@ const cardValue = {
 
 // Important Parameters
 const delayTime = 200;
+const numberOfDecks = 1;
 const NPCPointThreshold = 17;
+const dealerThreshold = 16;
 const initialCards = 2;
 const maxCards = 5;
 const maxPoints = 21;
-const dealerThreshold = 16;
 
 const deck = suits.flatMap((suit) => {
   return ranks.map((rank) => ({
@@ -48,11 +49,6 @@ function shuffleDeck(deck) {
     .map((item) => item.index)
     .map((index) => deck[index]);
   return shuffledDeck;
-}
-
-// Deal a card
-function dealCard(shuffledDeck) {
-  return shuffledDeck.pop();
 }
 
 function PlayerProperties(idTag) {
@@ -131,7 +127,7 @@ function PlayerProperties(idTag) {
       point.innerHTML = "";
     },
     hitFunction: function (deck) {
-      this.hand.push(dealCard(deck));
+      this.hand.push(deck.pop());
     },
     standFunction: function () {
       this.status = "Finish";
@@ -255,7 +251,7 @@ function DealerProperties(idTag) {
       point.innerHTML = "";
     },
     hitFunction: function (deck) {
-      this.hand.push(dealCard(deck));
+      this.hand.push(deck.pop());
     },
     standFunction: function () {
       this.status = "Finish";
@@ -304,7 +300,6 @@ async function performNPCTurnWithDelay(npc, deck, delayTime, NPCPointThreshold) 
     npc.updateHandStats();
     npc.clearDisplay();
     npc.displayCards();
-    // await delay(delayTime);
   } else {
     npc.standFunction();
     npc.clearDisplay();
@@ -357,9 +352,8 @@ const message = document.querySelector("#Message");
 const newGameButton = document.querySelector("#NewGameButton");
 const resultDisplay = document.getElementById("ResultList");
 
-// let playDeck = deck.concat(deck).concat(deck).concat(deck).concat(deck);
-let playDeck = deck.concat(deck).concat(deck);
-// let playDeck = deck;
+// Deck
+let playDeck = [].concat(...Array(numberOfDecks).fill(deck));
 
 async function newGame() {
   // Clear display
@@ -385,7 +379,6 @@ async function newGame() {
   }
 
   // Dealer Blackjack Check
-  console.log(dealer.hand[0].name, dealer.hand[1].name);
   if (dealer.result === "Blackjack") {
     message.innerHTML = "Dealer has Blackjack. Game Over!";
     dealer.clearDisplay();

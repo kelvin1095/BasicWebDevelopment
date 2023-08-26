@@ -1,0 +1,24 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: serif;
+  text-align: center;
+}
+
+a {
+  &:link {
+    text-decoration: none;
+    color: blue;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: blue;
+  }
+}
+
+#contactInfo {
+  text-align: center;
+}
