@@ -7,15 +7,72 @@ function Header() {
   return (
     <header>
       <h1>Hello World!</h1>
-      <nav>
-        <Link to="/dark">Dark</Link>
-        <Link to="/lite">Light</Link>
-      </nav>
     </header>
   );
 }
 
-function Main() {
+const miniProjects = [
+  {
+    name: "Old Index Page",
+    link: "oldIndex.html",
+  },
+  {
+    name: "Time App",
+    link: "clock/clock.html",
+  },
+  {
+    name: "BlackJack",
+    link: "blackjack/blackjack.html",
+  },
+  {
+    name: "Pokemon",
+    link: "pokemon/pokemon.html",
+  },
+  {
+    name: "Resume",
+    link: "resume/resume.html",
+  },
+  {
+    name: "Creepy Page",
+    link: "creeptPage/creepy.html",
+  },
+  {
+    name: "Boxes",
+    link: "eventListener/events.html",
+  },
+  {
+    name: "React",
+    link: "/lite",
+  },
+  {
+    name: "To-do List",
+    link: "todo/todo.html",
+  },
+];
+
+function LinkToPages(props) {
+  console.log(props.links);
+  return props.links.map((pageItem, index) => (
+    <React.Fragment key={index}>
+      <li>
+        <a href={pageItem.link}>{pageItem.name}</a>
+      </li>
+    </React.Fragment>
+  ));
+}
+
+function MainNavigate() {
+  return (
+    <main>
+      <h1>Links to Other Pages</h1>
+      <ul>
+        <LinkToPages links={miniProjects} />
+      </ul>
+    </main>
+  );
+}
+
+function MainLite() {
   const [clickFirst, setClickFirst] = React.useState(0);
   const [clickSecond, setClickSecond] = React.useState(0);
   const [clickThird, setClickThird] = React.useState(0);
@@ -28,6 +85,11 @@ function Main() {
 
   return (
     <main>
+      <nav>
+        <Link to="/dark">Dark</Link>
+        <Link to="/lite">Light</Link>
+      </nav>
+
       <h2>Click Test Red</h2>
       <p>Current Click Count: {clickFirst}</p>
       <button onClick={() => setClickFirst(clickFirst + 1)}>Click Here!</button>
@@ -43,7 +105,7 @@ function Main() {
   );
 }
 
-function Main2() {
+function MainDark() {
   const [clickFirst, setClickFirst] = React.useState(0);
   const [clickSecond, setClickSecond] = React.useState(0);
   const [clickThird, setClickThird] = React.useState(0);
@@ -56,6 +118,11 @@ function Main2() {
 
   return (
     <main>
+      <nav>
+        <Link to="/dark">Dark</Link>
+        <Link to="/lite">Light</Link>
+      </nav>
+
       <h2>Click Test Red</h2>
       <p>Current Click Count: {clickFirst}</p>
       <button onClick={() => setClickFirst(clickFirst + 1)}>Click Here!</button>
@@ -121,8 +188,9 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/lite" element={<Main />} />
-        <Route path="/dark" element={<Main2 />} />
+        <Route path="/" element={<MainNavigate />} />
+        <Route path="/lite" element={<MainLite />} />
+        <Route path="/dark" element={<MainDark />} />
       </Routes>
       <Footer />
     </BrowserRouter>

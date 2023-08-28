@@ -20,3 +20,85 @@ const getTime = function () {
 };
 
 setInterval(getTime, 1000);
+
+// const weatherJsonFilePath = "http://reg.bom.gov.au/fwo/IDN60901/IDN60901.94768.json";
+// fetch(weatherJsonFilePath)
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(`Failed to fetch JSON file: ${response.status} ${response.statusText}`);
+//     }
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.error("An error occurred while fetching or parsing the JSON file:", error);
+//   });
+
+// const sydneyWeather = () => {
+//   return new Promise((resolves, rejects) => {
+//     const api = "https://cors-anywhere.herokuapp.com/http://reg.bom.gov.au/fwo/IDN60901/IDN60901.94768.json";
+//     const request = new XMLHttpRequest();
+//     request.open("GET", api);
+//     request.onload = () => {
+//       if (request.status === 200) {
+//         resolves(JSON.parse(request.response));
+//       } else {
+//         rejects(Error(request.statusText));
+//       }
+//     };
+//     request.onerror = (err) => rejects(err);
+//     request.send();
+//   });
+// };
+
+// sydneyWeather().then(
+//   (weatherData) => console.log(weatherData),
+//   (err) => console.log(new Error("Can't load weather"))
+// );
+
+// const sydneyTime = () => {
+//   return new Promise((resolves, rejects) => {
+//     const api =
+//       "https://cors-anywhere.herokuapp.com/https://www.timeapi.io/api/Time/current/zone?timeZone=Australia/Sydney";
+//     const request = new XMLHttpRequest();
+//     request.open("GET", api);
+//     request.onload = () => {
+//       if (request.status === 200) {
+//         resolves(JSON.parse(request.response));
+//       } else {
+//         rejects(Error(request.statusText));
+//       }
+//     };
+//     request.onerror = (err) => rejects(err);
+//     request.send();
+//   });
+// };
+
+// sydneyTime().then(
+//   (weatherData) => console.log(weatherData),
+//   (err) => console.log(new Error("Can't load time"))
+// );
+
+// const sydneyTime = () => {
+//   return new Promise((resolves, rejects) => {
+//     const api = "http://api.open-notify.org/astros.json";
+//     const request = new XMLHttpRequest();
+//     request.open("GET", api);
+//     request.onload = () => {
+//       if (request.status === 200) {
+//         resolves(JSON.parse(request.response));
+//       } else {
+//         rejects(Error(request.statusText));
+//       }
+//     };
+//     request.onerror = (err) => rejects(err);
+//     request.send();
+//   });
+// };
+
+// sydneyTime().then(
+//   (weatherData) => console.log(weatherData),
+//   (err) => console.log(new Error("Can't load time"))
+// );

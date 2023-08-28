@@ -19,45 +19,23 @@ const cardValue = {
   Ace: 11,
 };
 
-const deck = suits.flatMap((suit) => {
-  return ranks.map((rank) => `${rank} of ${suit}`);
-});
+// Important Parameters
+const delayTime = 200;
+const numberOfDecks = 1;
+const NPCPointThreshold = 17;
+const dealerThreshold = 16;
+const initialCards = 2;
+const maxCards = 5;
+const maxPoints = 21;
 
-const deckAlt = suits.flatMap((suit) => {
+const deck = suits.flatMap((suit) => {
   return ranks.map((rank) => ({
     name: `${rank} of ${suit}`,
     suit: suit,
+    rank: rank,
     value: cardValue[rank],
   }));
 });
-
-// console.log(deck);
-
-// Function that shuffles a deck (https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
-
-// function shuffle(array) {
-//   let currentIndex = array.length,
-//     randomIndex;
-
-//   // While there remain elements to shuffle.
-//   while (currentIndex != 0) {
-//     // Pick a remaining element.
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex--;
-
-//     // And swap it with the current element.
-//     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-//   }
-
-//   return array;
-// }
-
-// console.log(shuffle(deck));
-
-// ATTEMPT AT MY OWN RANDOM FUNCTION
-// 1. get n random numbers
-// 2. sort the random numbers and take the randomised index
-// 3. apply the randomised index to the original array i want to shuffle
 
 function shuffleDeck(deck) {
   let random = [];
@@ -73,72 +51,73 @@ function shuffleDeck(deck) {
   return shuffledDeck;
 }
 
-// Deal a card
-function dealCard(shuffledDeck) {
-  return shuffledDeck.pop();
-}
-
-function hit(player) {
-  player[player.length + 1] = dealCard(shuffledDeck);
-}
-
-function PlayerProperties() {
+function PlayerProperties(idTag) {
   return {
     hand: [],
     noOfAces: 0,
     point: 0,
     action: ["Hit", "Stand"], // This will be split, double down, surrender or insurance option
-    status: "Playing", // This will be Playing, Bust, Blackjack or Stand
-    idTag: "",
+    status: "Playing", // This will be Playing or Finished
+    result: "", // This will be Bust, Blackjack or the score at stand
+    final: "", // This will be to indicate if a player win/lose/tie and how
+    idTag: idTag,
     updateHandStats: function () {
       // Count points
-      this.point = this.hand
-        .map((card) => cardValue[card.substring(0, card.indexOf(" "))])
-        .reduce((accumulate, currentVal) => accumulate + currentVal, 0);
+      this.point = this.hand.reduce((accumulate, { value }) => accumulate + value, 0);
 
       // Number of Aces
-      let cardReduced = this.hand.map((card) => card.substring(0, card.indexOf(" ")));
-      this.noOfAces = 0;
-      for (let i = 0; i < cardReduced.length; i++) {
-        if (cardReduced[i] === "Ace") {
-          this.noOfAces = this.noOfAces + 1;
-        }
-      }
+      this.noOfAces = this.hand.reduce((accumulate, { rank }) => accumulate + (rank == "Ace"), 0);
 
-      // Account for aces if points are greater than 21
-      while (this.point > 21 && this.noOfAces > 0) {
+      // Account for scores higher than 21 with at least one ace
+      while (this.point > maxPoints && this.noOfAces > 0) {
         this.point = this.point - 10;
         this.noOfAces = this.noOfAces - 1;
       }
 
-      // Blackjack Check
+      // Check for Blackjack
+      var cards = this.hand.map(({ rank }) => rank);
       if (
-        this.hand.length == 2 &&
-        cardReduced.includes("Ace") &&
-        (cardReduced.includes("King") ||
-          cardReduced.includes("Queen") ||
-          cardReduced.includes("Jack") ||
-          cardReduced.includes("10"))
+        cards.length == 2 &&
+        cards.includes("Ace") &&
+        (cards.includes("King") || cards.includes("Queen") || cards.includes("Jack") || cards.includes("10"))
       ) {
-        this.status = "Blackjack!";
+        this.result = "Blackjack";
+        this.status = "Finish";
       }
 
-      if (this.point > 21) {
-        this.status = "Bust";
+      // Update status if player scores 21
+      if (this.point == maxPoints && cards.length !== 2) {
+        this.result = "Final Score: 21";
+        this.status = "Finish";
+      }
+
+      // Update status if max card count
+      if (cards.length == maxCards) {
+        this.result = "Final Score: " + this.point;
+        this.status = "Finish";
+      }
+
+      // Update status if player bust
+      if (this.point > maxPoints) {
+        this.result = "Bust";
+        this.status = "Finish";
       }
     },
     displayCards: function () {
+      // Display Cards as a list
       const cardList = document.getElementById(this.idTag + "Hand");
-      this.hand.forEach((card) => {
+      this.hand.forEach(({ name }) => {
         const li = document.createElement("li");
-        li.textContent = card;
+        li.textContent = name;
         cardList.appendChild(li);
       });
+
+      // Display Points
       const point = document.getElementById(this.idTag + "Point");
-      if (this.status !== "Playing") {
-        point.innerHTML = this.status;
-      } else {
+      if (this.status == "Playing") {
         point.innerHTML = "Current Point: " + this.point;
+      } else {
+        point.innerHTML = this.result;
       }
     },
     clearDisplay: function () {
@@ -148,10 +127,34 @@ function PlayerProperties() {
       point.innerHTML = "";
     },
     hitFunction: function (deck) {
-      this.hand.push(dealCard(deck));
+      this.hand.push(deck.pop());
+    },
+    standFunction: function () {
+      this.status = "Finish";
+      this.result = "Final Score: " + this.point.toString();
+    },
+    finalFunction: function (dealerResult, dealerPoint) {
+      if (dealerResult == "Blackjack" && this.result == "Blackjack") {
+        this.final = "Tie, blackjack";
+      } else if (dealerResult == "Blackjack") {
+        this.final = "Lose, dealer blackjack";
+      } else if (this.result == "Blackjack") {
+        this.final = "Win, blackjack";
+      } else if (this.result == "Bust") {
+        this.final = "Lose, bust";
+      } else if (dealerResult == "Bust" && this.result !== "Bust") {
+        this.final = "Win, dealer bust";
+      } else if (dealerPoint > this.point) {
+        this.final = "Lose, points";
+      } else if (dealerPoint < this.point) {
+        this.final = "Win, points";
+      } else if (dealerPoint == this.point) {
+        this.final = "Tie, points";
+      }
     },
     resetPlayer: function () {
       this.status = "Playing";
+      this.result = "";
       this.point = 0;
       this.noOfAces = 0;
       this.hand = [];
@@ -159,79 +162,86 @@ function PlayerProperties() {
   };
 }
 
-function DealerProperties() {
+function DealerProperties(idTag) {
   return {
     hand: [],
-    action: ["Hit", "Stand"],
-    point: 0,
-    truePoint: 0,
-    status: "Playing",
-    idTag: "",
     noOfAces: 0,
+    point: 0,
+    displayPoint: 0,
+    action: ["Hit", "Stand"], // This will be split, double down, surrender or insurance option
+    status: "Playing", // This will be Playing or Finished
+    result: "", // This will be Bust, Blackjack or the score at stand
+    final: "", // This will be to indicate if a player win/lose/tie and how
+    idTag: idTag,
     updateHandStats: function () {
-      console.log(this.hand);
       // Count points
-      this.truePoint = this.hand
-        .map((card) => cardValue[card.substring(0, card.indexOf(" "))])
-        .reduce((accumulate, currentVal) => accumulate + currentVal, 0);
-      this.point = cardValue[this.hand[0].substring(0, this.hand[0].indexOf(" "))];
+      this.point = this.hand.reduce((accumulate, { value }) => accumulate + value, 0);
+      this.displayPoint = this.hand[0].value;
 
       // Number of Aces
-      let cardReduced = this.hand.map((card) => card.substring(0, card.indexOf(" ")));
-      this.noOfAces = 0;
-      for (let i = 0; i < cardReduced.length; i++) {
-        if (cardReduced[i] === "Ace") {
-          this.noOfAces = this.noOfAces + 1;
-        }
-      }
+      this.noOfAces = this.hand.reduce((accumulate, { rank }) => accumulate + (rank == "Ace"), 0);
 
-      // Account for aces if points are greater than 21
-      while (this.point > 21 && this.noOfAces > 0) {
+      // Account for scores higher than 21 with at least one ace
+      while (this.point > maxPoints && this.noOfAces > 0) {
         this.point = this.point - 10;
         this.noOfAces = this.noOfAces - 1;
       }
 
-      // Blackjack Check. If dealer has blackjack, the game instantly ends.
-      if (this.hand.length == 2 && cardReduced[0].includes("Ace")) {
-        if (
-          cardReduced.includes("King") ||
-          cardReduced.includes("Queen") ||
-          cardReduced.includes("Jack") ||
-          cardReduced.includes("10")
-        ) {
-          this.Status = "Blackjack";
-        }
+      // Check for Blackjack
+      var cards = this.hand.map(({ rank }) => rank);
+      if (
+        cards.length == 2 &&
+        cards.includes("Ace") &&
+        (cards.includes("King") || cards.includes("Queen") || cards.includes("Jack") || cards.includes("10"))
+      ) {
+        this.result = "Blackjack";
+        this.status = "Finish";
       }
 
-      if (this.truePoint > 21) {
-        this.status = "Bust";
+      // Update status if player scores 21
+      if (this.point == maxPoints && cards.length !== initialCards) {
+        this.result = "Final Score: 21";
+        this.status = "Finish";
+      }
+
+      // Update status if max card count
+      if (cards.length == maxCards) {
+        this.result = "Final Score: " + this.point;
+        this.status = "Finish";
+      }
+
+      // Update status if player bust
+      if (this.point > maxPoints) {
+        this.result = "Bust";
+        this.status = "Finish";
       }
     },
     displayCards: function () {
+      // Display Cards as a list
       const cardList = document.getElementById(this.idTag + "Hand");
-      let li = document.createElement("li");
-      li.textContent = this.hand[0];
+      const li = document.createElement("li");
+      li.textContent = this.hand[0].name;
       cardList.appendChild(li);
 
+      // Display Points
       const point = document.getElementById(this.idTag + "Point");
-      if (this.status !== "Playing") {
-        point.innerHTML = this.status;
-      } else {
-        point.innerHTML = "Current Point: " + this.point;
-      }
+      point.innerHTML = "Current Point: " + this.displayPoint;
     },
     displayCardsFinal: function () {
+      // Display Cards as a list
       const cardList = document.getElementById(this.idTag + "Hand");
-      this.hand.forEach((card) => {
+      this.hand.forEach(({ name }) => {
         const li = document.createElement("li");
-        li.textContent = card;
+        li.textContent = name;
         cardList.appendChild(li);
       });
+
+      // Display Points
       const point = document.getElementById(this.idTag + "Point");
-      if (this.status !== "Playing") {
-        point.innerHTML = this.status;
+      if (this.status == "Playing") {
+        point.innerHTML = "Current Point: " + this.point;
       } else {
-        point.innerHTML = "Current Point: " + this.truePoint;
+        point.innerHTML = this.result;
       }
     },
     clearDisplay: function () {
@@ -241,10 +251,15 @@ function DealerProperties() {
       point.innerHTML = "";
     },
     hitFunction: function (deck) {
-      this.hand.push(dealCard(deck));
+      this.hand.push(deck.pop());
+    },
+    standFunction: function () {
+      this.status = "Finish";
+      this.result = "Final Score: " + this.point.toString();
     },
     resetPlayer: function () {
       this.status = "Playing";
+      this.result = "";
       this.point = 0;
       this.noOfAces = 0;
       this.hand = [];
@@ -252,175 +267,184 @@ function DealerProperties() {
   };
 }
 
-// let playingDeck = deck.concat(deck).concat(deck).concat(deck).concat(deck);
-// let playingDeck = deck.concat(deck).concat(deck);
-let playingDeck = deck;
-
-// function newGame() {
-//   // Initialise Players and dealer
-//   const npc1 = PlayerProperties();
-//   const npc2 = PlayerProperties();
-//   const npc3 = PlayerProperties();
-//   const npc4 = PlayerProperties();
-//   const player = PlayerProperties();
-//   const dealer = DealerProperties();
-
-//   npc1.idTag = "NPC1";
-//   npc2.idTag = "NPC2";
-//   npc3.idTag = "NPC3";
-//   npc4.idTag = "NPC4";
-//   player.idTag = "Player";
-//   dealer.idTag = "Dealer";
-
-//   const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
-//   const npcs = [npc1, npc2, npc3, npc4, player];
-
-//   // Shuffle the deck
-//   let shuffledDeck = shuffleDeck(playingDeck);
-
-//   const initialDeal = 2;
-//   for (let i = 0; i < initialDeal; i++) {
-//     for (let player of allPlayers) {
-//       player.hand.push(dealCard(shuffledDeck));
-//       player.updateHandStats();
-//       player.clearDisplay();
-//       player.displayCards();
-//     }
-//   }
-
-//   function performNPCTurn(npc) {
-//     const delay = 1000;
-
-//     const intervalId = setInterval(() => {
-//       if (npc.hand.length < 5 && npc.point < 17) {
-//         npc.hitFunction(shuffledDeck);
-//         npc.updateHandStats();
-//         npc.clearDisplay();
-//         npc.displayCards();
-//       } else {
-//         clearInterval(intervalId);
-//         setTimeout(() => {
-//           performNextNPCTurn();
-//         });
-//       }
-//     }, delay);
-//   }
-
-//   let npcIndex = 0;
-//   function performNextNPCTurn() {
-//     if (npcIndex < npcs.length) {
-//       const npc = npcs[npcIndex];
-//       performNPCTurn(npc);
-//       npcIndex++;
-//     } else {
-//       while (dealer.hand.length < 5 && dealer.truePoint < 17) {
-//         dealer.hitFunction(shuffledDeck);
-//         dealer.updateHandStats();
-//         dealer.clearDisplay();
-//         dealer.displayCardsFinal();
-//       }
-//     }
-//   }
-
-//   performNextNPCTurn();
-
-//   console.log("Deck count: " + shuffledDeck.length);
-
-//   // Final check of who won goes here
-// }
-
-// Initialise Players and dealer
-const npc1 = PlayerProperties();
-const npc2 = PlayerProperties();
-const npc3 = PlayerProperties();
-const npc4 = PlayerProperties();
-const player = PlayerProperties();
-const dealer = DealerProperties();
-
-npc1.idTag = "NPC1";
-npc2.idTag = "NPC2";
-npc3.idTag = "NPC3";
-npc4.idTag = "NPC4";
-player.idTag = "Player";
-dealer.idTag = "Dealer";
+const npc1 = PlayerProperties("NPC1");
+const npc2 = PlayerProperties("NPC2");
+const npc3 = PlayerProperties("NPC3");
+const npc4 = PlayerProperties("NPC4");
+const player = PlayerProperties("Player");
+const dealer = DealerProperties("Dealer");
 
 const allPlayers = [npc1, npc2, npc3, npc4, player, dealer];
-const npcs = [npc1, npc2, npc3, npc4, player];
+const players = [npc1, npc2, npc3, npc4, player];
+const npcs = [npc1, npc2, npc3, npc4];
 
+function delay(ms) {
+  // console.log(new Date());
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Deal Cards
 async function dealCardWithDelay(player, deck, delayTime) {
   await delay(delayTime);
-  player.hand.push(dealCard(deck));
+  player.hitFunction(deck);
   player.updateHandStats();
   player.clearDisplay();
   player.displayCards();
 }
 
-async function performNPCTurnWithDelay(npc, deck, delayTime) {
+// NPC Turn
+async function performNPCTurnWithDelay(npc, deck, delayTime, NPCPointThreshold) {
   await delay(delayTime);
-  console.log(npc.idTag + " turn");
-  while (npc.hand.length < 5 && npc.point < 17) {
+  if (npc.hand.length < maxCards && npc.point < NPCPointThreshold) {
     npc.hitFunction(deck);
     npc.updateHandStats();
     npc.clearDisplay();
     npc.displayCards();
-    await delay(delayTime);
+  } else {
+    npc.standFunction();
+    npc.clearDisplay();
+    npc.displayCards();
   }
 }
 
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+// Monitor the hit/stand button
+const hitButton = document.getElementById("HitButton");
+const standButton = document.getElementById("StandButton");
+
+function onHitButtonClick() {
+  onHitButtonClick.player.hitFunction(onHitButtonClick.deck);
+  onHitButtonClick.player.updateHandStats();
+  onHitButtonClick.player.clearDisplay();
+  onHitButtonClick.player.displayCards();
+  removeEventListeners();
+  onHitButtonClick.resolve();
 }
 
-async function newGame() {
-  const message = document.querySelector("#Message");
-  const newGameButton = document.querySelector("#NewGameButton");
+function onStandButtonClick() {
+  onStandButtonClick.player.standFunction();
+  onHitButtonClick.player.clearDisplay();
+  onHitButtonClick.player.displayCards();
+  removeEventListeners();
+  onStandButtonClick.resolve();
+}
 
+function removeEventListeners() {
+  hitButton.removeEventListener("click", onHitButtonClick);
+  standButton.removeEventListener("click", onStandButtonClick);
+}
+
+async function waitForUserInput(player, deck) {
+  return new Promise((resolve) => {
+    onHitButtonClick.player = player;
+    onHitButtonClick.deck = deck;
+    onHitButtonClick.resolve = resolve;
+
+    onStandButtonClick.player = player;
+    onStandButtonClick.resolve = resolve;
+
+    hitButton.addEventListener("click", onHitButtonClick);
+    standButton.addEventListener("click", onStandButtonClick);
+  });
+}
+
+// Game UI Elements
+const message = document.querySelector("#Message");
+const newGameButton = document.querySelector("#NewGameButton");
+const resultDisplay = document.getElementById("ResultList");
+
+// Deck
+let playDeck = [].concat(...Array(numberOfDecks).fill(deck));
+
+async function newGame() {
   // Clear display
   for (let player of allPlayers) {
     player.clearDisplay();
     player.resetPlayer();
   }
-
+  resultDisplay.innerHTML = "";
   newGameButton.innerHTML = "";
 
   // Shuffle the deck
-  let shuffledDeck = shuffleDeck(playingDeck);
+  let shuffledDeck = shuffleDeck(playDeck);
 
   console.log("players initialised with success");
-  console.log(shuffledDeck.length);
   message.innerHTML = "Dealing out cards";
 
-  const initialDeal = 2;
+  // Deal initial two cards
+  const initialDeal = initialCards;
   for (let i = 0; i < initialDeal; i++) {
     for (let player of allPlayers) {
-      await dealCardWithDelay(player, shuffledDeck, 1000);
+      await dealCardWithDelay(player, shuffledDeck, delayTime);
     }
   }
 
+  // Dealer Blackjack Check
+  if (dealer.result === "Blackjack") {
+    message.innerHTML = "Dealer has Blackjack. Game Over!";
+    dealer.clearDisplay();
+    dealer.displayCardsFinal();
+    // TODO - will need to do results here. If another player has blackjack then draw
+    newGameButton.innerHTML = `<button onclick="newGame()" id="NewGame">New Game</button>`;
+    return;
+  }
+
   console.log("cards dealt with success");
-  console.log(shuffledDeck.length);
 
   // Each NPC has their turn
-  for (const npc of npcs) {
+  for (let npc of npcs) {
+    await delay(delayTime);
     message.innerHTML = `${npc.idTag}'s turn`;
-    await performNPCTurnWithDelay(npc, shuffledDeck, 1000);
+    while (npc.status == "Playing") {
+      await performNPCTurnWithDelay(npc, shuffledDeck, delayTime, NPCPointThreshold);
+    }
   }
 
   console.log("all npcs completed turn with success");
-  console.log(shuffledDeck.length);
+  await delay(delayTime);
+
+  // Player's turn here
+  message.innerHTML = `Your turn`;
+  while (player.status == "Playing" && player.hand.length <= maxCards) {
+    await waitForUserInput(player, shuffledDeck);
+  }
 
   // Dealer has the final turn
-  while (dealer.hand.length < 5 && dealer.truePoint < 17) {
-    message.innerHTML = `Dealer's turn`;
-    dealer.hitFunction(shuffledDeck);
-    dealer.updateHandStats();
-    dealer.clearDisplay();
-    dealer.displayCardsFinal();
-    await delay(1000);
+  message.innerHTML = `Dealer's turn`;
+
+  // Reveal hidden card
+  await delay(delayTime);
+  dealer.clearDisplay();
+  dealer.displayCardsFinal();
+  await delay(delayTime);
+
+  // Loop through
+  while (dealer.status == "Playing") {
+    if (dealer.hand.length < maxCards && dealer.point <= dealerThreshold) {
+      dealer.hitFunction(shuffledDeck);
+      dealer.updateHandStats();
+      dealer.clearDisplay();
+      dealer.displayCardsFinal();
+      await delay(delayTime);
+    } else {
+      dealer.standFunction();
+    }
   }
 
   // Check who has won goes here
-  message.innerHTML = `Game is finished (Who has won?)`;
+  message.innerHTML = `Game Over!`;
+  let playerScores = [];
+  let i = 0;
+  for (let npc of players) {
+    npc.finalFunction(dealer.result, dealer.point);
+    playerScores[i] = { player: npc.idTag, result: npc.final };
+    i++;
+  }
+
+  playerScores.forEach(({ player, result }) => {
+    const li = document.createElement("li");
+    li.textContent = `${player}: ${result}`;
+    resultDisplay.appendChild(li);
+  });
 
   newGameButton.innerHTML = `<button onclick="newGame()" id="NewGame">New Game</button>`;
 }

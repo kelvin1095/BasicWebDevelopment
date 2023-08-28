@@ -51,6 +51,11 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  font-family: NotoSerif;
+  text-align: center;
+}
+
 #Date {
   font-family: NotoSansMono;
   text-align: center;

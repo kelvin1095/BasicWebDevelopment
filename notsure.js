@@ -18,10 +18,10 @@ async function testPostgres() {
     const client = await pool.connect();
 
     // Perform a test query
-    const result = await client.query("SELECT * FROM pokemon WHERE type1 = 'Grass' AND type2 = 'Ghost';");
+    const result = await client.query("SELECT DISTINCT name FROM pokemon;");
 
     console.log("Connected to PostgreSQL successfully!");
-    console.log("Current time from database:", result.rows[0]);
+    console.log("Current time from database:", result.rows);
 
     // Release the client
     client.release();

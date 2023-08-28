@@ -110,5 +110,41 @@ const test2 = `
 
 document.getElementById("test2").innerHTML = test2;
 
-// console.log("This is Pikachu: ", pikachu)
-// console.log("This is Charmander: ", charmander)
+document.getElementById("selectPokemon").addEventListener("submit", async function (event) {
+  event.preventDefault();
+  const selectedValue = document.getElementById("pokemon-select").value;
+
+  const response = await fetch(`/get-data?selectedValue=${selectedValue}`);
+  const data = await response.json();
+
+  const resultElement = document.getElementById("result");
+  const displayInfo = `
+  <ul>
+    <li>Pokedex Number: ${data[0].pokedexnumber}</li>
+    <li>Height: ${data[0].height} m</li>
+    <li>Weight: ${data[0].weight} kg</li>
+  </ul>
+  <table>
+  <thead>
+    <tr>
+      <th>HP</th>
+      <th>Attack</th>
+      <th>Defense</th>
+      <th>Sp. Atk</th>
+      <th>Sp. Def</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>${data[0].hp}</td>
+    <td>${data[0].att}</td>
+    <td>${data[0].def}</td>
+    <td>${data[0].spa}</td>
+    <td>${data[0].spd}</td>
+    <td>${data[0].spe}</td>
+  </tr>
+</table>
+  `;
+
+  resultElement.innerHTML = displayInfo;
+});
