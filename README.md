@@ -53,5 +53,5 @@ Weight VARCHAR(255),
 PokemonImageFilename VARCHAR(255)
 );
 
-\COPY pokemon FROM 'C:/Users/kwong/Downloads/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
+\COPY pokemon FROM 'C:/Users/kwong/Desktop/websiteDev/BasicWebDevelopment/pokemonAssets/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
 -->

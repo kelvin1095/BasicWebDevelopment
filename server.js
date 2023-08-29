@@ -33,6 +33,31 @@ app.get("/get-data", async (req, res) => {
   }
 });
 
+// Handle GET request from the frontend
+app.get("/get-data-type", async (req, res) => {
+  try {
+    const selectedValue1 = req.query.selectedValue1;
+    const selectedValue2 = req.query.selectedValue2;
+
+    let queryResult;
+    if (selectedValue2 == "") {
+      queryResult = await pool.query("SELECT DISTINCT name FROM pokemon WHERE type1 = $1 AND type2 IS NULL", [
+        selectedValue1,
+      ]);
+    } else {
+      queryResult = await pool.query("SELECT DISTINCT name FROM pokemon WHERE type1 = $1 AND type2 = $2", [
+        selectedValue1,
+        selectedValue2,
+      ]);
+    }
+
+    res.status(200).json(queryResult.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
