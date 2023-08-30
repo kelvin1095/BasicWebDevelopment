@@ -30,6 +30,13 @@ This repo contains all files I have written to aid in learning web development f
 
 - PostgreSQL: I'm using a relational database that uses SQL to get a grasp on things before trying a more advanced stack.
 
+### Things I still want to do:
+
+- Using Nginx as a load balancer
+- Server-side rendering in React with Next.js
+- Another JS framework, possibly svelte and svelte-kit
+- Searching for a free location to be able to test.
+
 <!--
 DROP TABLE pokemon;
 

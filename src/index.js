@@ -6,7 +6,7 @@ import "./style.css";
 function Header() {
   return (
     <header>
-      <h1>Hello World!</h1>
+      <h1>Hello, Welcome to my index page!</h1>
     </header>
   );
 }
