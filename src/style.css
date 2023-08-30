@@ -2,6 +2,11 @@ body {
   font-family: sans-serif;
 }
 
+#root {
+  width: 600px;
+  margin: 2px auto;
+}
+
 h1 {
   font-family: serif;
   text-align: center;

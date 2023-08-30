@@ -4111,6 +4111,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   font-family: sans-serif;
 }
 
+#root {
+  width: 600px;
+  margin: 2px auto;
+}
+
 h1 {
   font-family: serif;
   text-align: center;
@@ -4131,7 +4136,7 @@ a {
 #contactInfo {
   text-align: center;
 }
-`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE;IACE,qBAAqB;IACrB,WAAW;EACb;;EAEA;IACE,qBAAqB;IACrB,WAAW;EACb;AACF;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":["body {\r\n  font-family: sans-serif;\r\n}\r\n\r\nh1 {\r\n  font-family: serif;\r\n  text-align: center;\r\n}\r\n\r\na {\r\n  &:link {\r\n    text-decoration: none;\r\n    color: blue;\r\n  }\r\n\r\n  &:visited {\r\n    text-decoration: none;\r\n    color: blue;\r\n  }\r\n}\r\n\r\n#contactInfo {\r\n  text-align: center;\r\n}\r\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE;IACE,qBAAqB;IACrB,WAAW;EACb;;EAEA;IACE,qBAAqB;IACrB,WAAW;EACb;AACF;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":["body {\r\n  font-family: sans-serif;\r\n}\r\n\r\n#root {\r\n  width: 600px;\r\n  margin: 2px auto;\r\n}\r\n\r\nh1 {\r\n  font-family: serif;\r\n  text-align: center;\r\n}\r\n\r\na {\r\n  &:link {\r\n    text-decoration: none;\r\n    color: blue;\r\n  }\r\n\r\n  &:visited {\r\n    text-decoration: none;\r\n    color: blue;\r\n  }\r\n}\r\n\r\n#contactInfo {\r\n  text-align: center;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40664,7 +40669,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Header() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello World!"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello, Welcome to my index page!"));
 }
 var miniProjects = [{
   name: "Old Index Page",
