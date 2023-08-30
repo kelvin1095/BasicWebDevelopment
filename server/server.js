@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const { Pool } = require("pg");
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "..")));
 
 // Setup the PostgreSQL connection pool
 const pool = new Pool({
@@ -59,7 +59,7 @@ app.get("/get-data-type", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "..", "index.html"));
 });
 
 const port = process.env.PORT || 3000;

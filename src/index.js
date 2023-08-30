@@ -14,44 +14,43 @@ function Header() {
 const miniProjects = [
   {
     name: "Old Index Page",
-    link: "oldIndex.html",
+    link: "pages/oldIndex.html",
   },
   {
     name: "Time App",
-    link: "clock/clock.html",
-  },
-  {
-    name: "BlackJack",
-    link: "blackjack/blackjack.html",
-  },
-  {
-    name: "Pokemon",
-    link: "pokemon/pokemon.html",
-  },
-  {
-    name: "Resume",
-    link: "resume/resume.html",
-  },
-  {
-    name: "Creepy Page",
-    link: "creeptPage/creepy.html",
-  },
-  {
-    name: "Boxes",
-    link: "eventListener/events.html",
-  },
-  {
-    name: "React",
-    link: "/lite",
+    link: "pages/clock.html",
   },
   {
     name: "To-do List",
-    link: "todo/todo.html",
+    link: "pages/todo.html",
+  },
+  {
+    name: "BlackJack",
+    link: "pages/blackjack.html",
+  },
+  {
+    name: "Pokemon",
+    link: "pages/pokemon.html",
+  },
+  {
+    name: "Resume",
+    link: "pages/resume.html",
+  },
+  {
+    name: "Boxes",
+    link: "pages/events.html",
+  },
+  {
+    name: "Creepy Page",
+    link: "pages/creepy.html",
+  },
+  {
+    name: "React",
+    link: "lite",
   },
 ];
 
 function LinkToPages(props) {
-  console.log(props.links);
   return props.links.map((pageItem, index) => (
     <React.Fragment key={index}>
       <li>
