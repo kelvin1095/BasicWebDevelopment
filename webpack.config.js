@@ -1,9 +1,10 @@
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/public/dist",
     filename: "main.js",
   },
+  devtool: "source-map",
   mode: "development",
   module: {
     rules: [

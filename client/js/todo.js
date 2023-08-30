@@ -1,7 +1,7 @@
-// Appending tasks to the list
-
+// Creating an index to keep track of task number
 var taskNumber = 0;
 
+// Appending tasks to the list
 const addTask = function () {
   addBox = document.getElementById("InputBox");
   newTask = addBox.value;
