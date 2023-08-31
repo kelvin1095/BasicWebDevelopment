@@ -18,8 +18,8 @@ document.getElementById("selectPokemon").addEventListener("submit", async functi
   </div>
   <div id="pokemonImage">
     <img
-      src="/pokemonAssets/PokemonHome/${data[0].pokemonimagefilename}"
-      alt="Bulbasaur"
+      src="/public/pokemonAssets/PokemonHome/${data[0].pokemonimagefilename}"
+      alt="${data[0].name}"
       width="512px"
     />
   </div>
