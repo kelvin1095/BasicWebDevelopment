@@ -38,7 +38,7 @@ h1 {
   padding: 30px;
   border-radius: 5px;
   margin: 0 auto;
-  width: 600px;
+  width: 1200px;
 }
 
 a {
@@ -101,4 +101,23 @@ a {
       }
     }
   }
+}
+
+#buttonContainer {
+  text-align: center;
+  > .changeFormButton {
+    width: 30px;
+  }
+}
+
+#mainInteraction {
+  display: flex;
+  gap: 10px;
+  > div {
+    flex: 1;
+  }
+}
+
+form {
+  text-align: center;
 }

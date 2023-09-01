@@ -1,3 +1,126 @@
+function formNameDisplay(form) {
+  let formDisplay = "";
+  if (form !== null) {
+    formDisplay = "(" + form + ")";
+  }
+  return formDisplay;
+}
+
+function displayPokemonInfo(data, index) {
+  const resultElement = document.getElementById("pokemonResult");
+  const displayInfo = `
+  <div id="pokemonDisplay">
+    <div id="pokemonTitle">
+      <h3>#${data[index].pokedexnumber.toString().padStart(4, "0")} ${data[index].name} ${formNameDisplay(
+    data[index].form
+  )}</h3>
+    </div>
+    <div id="pokemonImage">
+      <img
+        src="/public/pokemonAssets/PokemonHome/${data[index].pokemonimagefilename}"
+        alt="${data[index].name}"
+        height="512px"
+        width="512px"
+      />
+    </div>
+    <div id="buttonContainer"></div>
+    <div id="pokemonType" class="infoTable">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>    
+            <div id="type1">${data[index].type1}</div>
+            <div id="type2">${data[index].type2 || ""}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div id="pokemonInfo" class="infoTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Height</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${data[index].height} m</td>
+            <td>${data[index].weight} kg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="pokemonAbility" class="infoTable">
+      <table>
+        <thead>
+          <tr>
+            <th>Ability 1</th>
+            <th>Ability 2</th>
+            <th>Hidden Ability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${data[index].ability1}</td>
+            <td>${data[index].ability2 || ""}</td>
+            <td>${data[index].hiddenability || ""}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="pokemonStats" class="infoTable">
+      <table>
+        <thead>
+          <tr>
+            <th>HP</th>
+            <th>Attack</th>
+            <th>Defense</th>
+            <th>Sp. Atk</th>
+            <th>Sp. Def</th>
+            <th>Speed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${data[index].hp}</td>
+            <td>${data[index].att}</td>
+            <td>${data[index].def}</td>
+            <td>${data[index].spa}</td>
+            <td>${data[index].spd}</td>
+            <td>${data[index].spe}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  `;
+
+  resultElement.innerHTML = displayInfo;
+  createButtons(data.length);
+  document.getElementById("pokemon-select").value = "";
+}
+
+function createButtons(numButtons) {
+  const container = document.getElementById("buttonContainer");
+
+  for (let i = 1; i <= numButtons; i++) {
+    const button = document.createElement("button");
+    button.textContent = i;
+    button.classList.add("changeFormButton");
+    button.addEventListener("click", function () {
+      displayPokemonInfo(appData, i - 1);
+    });
+    container.appendChild(button);
+  }
+}
+
 document.getElementById("selectPokemon").addEventListener("submit", async function (event) {
   event.preventDefault();
   const selectedValue = document.getElementById("pokemon-select").value;
@@ -10,99 +133,9 @@ document.getElementById("selectPokemon").addEventListener("submit", async functi
     return;
   }
 
-  const resultElement = document.getElementById("pokemonResult");
-  const displayInfo = `
-  <div id="pokemonDisplay">
-  <div id="pokemonTitle">
-    <h3>#${data[0].pokedexnumber.toString().padStart(4, "0")} ${data[0].name}</h3>
-  </div>
-  <div id="pokemonImage">
-    <img
-      src="/public/pokemonAssets/PokemonHome/${data[0].pokemonimagefilename}"
-      alt="${data[0].name}"
-      width="512px"
-    />
-  </div>
-  <div id="pokemonType" class="infoTable">
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>    
-          <div id="type1">${data[0].type1}</div>
-          <div id="type2">${data[0].type2 || ""}</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <div id="pokemonInfo" class="infoTable">
-    <table>
-      <thead>
-        <tr>
-          <th>Height</th>
-          <th>Weight</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${data[0].height} m</td>
-          <td>${data[0].weight} kg</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="pokemonAbility" class="infoTable">
-    <table>
-      <thead>
-        <tr>
-          <th>Ability 1</th>
-          <th>Ability 2</th>
-          <th>Hidden Ability</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${data[0].ability1}</td>
-          <td>${data[0].ability2 || ""}</td>
-          <td>${data[0].hiddenability || ""}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="pokemonStats" class="infoTable">
-    <table>
-      <thead>
-        <tr>
-          <th>HP</th>
-          <th>Attack</th>
-          <th>Defense</th>
-          <th>Sp. Atk</th>
-          <th>Sp. Def</th>
-          <th>Speed</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${data[0].hp}</td>
-          <td>${data[0].att}</td>
-          <td>${data[0].def}</td>
-          <td>${data[0].spa}</td>
-          <td>${data[0].spd}</td>
-          <td>${data[0].spe}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-  `;
+  window.appData = data;
 
-  resultElement.innerHTML = displayInfo;
-  document.getElementById("pokemon-select").value = "";
+  displayPokemonInfo(data, 0);
 });
 
 document.getElementById("selectType").addEventListener("submit", async function (event) {
@@ -116,9 +149,9 @@ document.getElementById("selectType").addEventListener("submit", async function 
   const resultElement = document.getElementById("typeResult");
   resultElement.innerHTML = "";
   const ul = document.createElement("ul");
-  data.map(({ name }) => {
+  data.map(({ pokedexnumber, name }) => {
     const li = document.createElement("li");
-    li.textContent = name;
+    li.textContent = `#${pokedexnumber.toString().padStart(4, "0")} - ${name}`;
     ul.appendChild(li);
   });
   resultElement.appendChild(ul);

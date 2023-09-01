@@ -30,6 +30,18 @@ This repo contains all files I have written to aid in learning web development f
 
 - PostgreSQL: I'm using a relational database that uses SQL to get a grasp on things before trying a more advanced stack.
 
+### Docker
+
+- Dockerfile is used to create a docker image.
+- A running image is called a container.
+- Stop a container before deleting the image.
+- There are additional commands that add more functionality.
+  - EXPOSE: Used to expose ports.
+  - VOLUME: Create a persistant storage that remains after the container shuts down.
+- You can also put the same steps twice for different image streams to create different images for development and production (FROM node:15 AS production, --only=production, image-name:production --target production).
+  - Developer containers are using bind mounts. These link files between code locally and code inside the container so that changes made will reflect immediately.
+  - To use a bind mount, docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app your-image-name:development
+
 ### Things I still want to do:
 
 - Using Nginx as a load balancer
@@ -41,24 +53,38 @@ This repo contains all files I have written to aid in learning web development f
 DROP TABLE pokemon;
 
 CREATE TABLE pokemon (
-PokedexNumber INT,
-Name VARCHAR(255),
-Form VARCHAR(255),
-Type1 VARCHAR(255),
-Type2 VARCHAR(255),
-Ability1 VARCHAR(255),
-Ability2 VARCHAR(255),
-HiddenAbility VARCHAR(255),
-HP INT,
-Att INT,
-Def INT,
-SpA INT,
-SpD INT,
-Spe INT,
-Height VARCHAR(255),
-Weight VARCHAR(255),
-PokemonImageFilename VARCHAR(255)
-);
+  PokedexNumber INT,
+  Name VARCHAR(255),
+  Form VARCHAR(255),
+  Type1 VARCHAR(255),
+  Type2 VARCHAR(255),
+  Ability1 VARCHAR(255),
+  Ability2 VARCHAR(255),
+  HiddenAbility VARCHAR(255),
+  HP INT,
+  Att INT,
+  Def INT,
+  SpA INT,
+  SpD INT,
+  Spe INT,
+  Height VARCHAR(255),
+  Weight VARCHAR(255),
+  PokemonImageFilename VARCHAR(255)
+  );
 
-\COPY pokemon FROM 'C:/Users/kwong/Desktop/websiteDev/BasicWebDevelopment/pokemonAssets/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
+\COPY pokemon FROM 'C:/Users/kwong/Desktop/websiteDev/BasicWebDevelopment/public/pokemonAssets/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
+
+psql -h host.docker.internal -p 5432 -U postgres -d postgres
+
+\COPY pokemon FROM '/home/kwong/webdev/BasicWebDevelopment/public/pokemonAssets/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
+
+\l - List out all database
+\du - List out all users
 -->
+
+<!-- DOCKER
+docker build -t docker-test-image:development --target development .
+docker build -t docker-test-image:production --target production .
+docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app docker-test-image:development
+docker-compose up
+ -->

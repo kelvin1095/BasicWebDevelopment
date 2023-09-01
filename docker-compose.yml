@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    image: docker-test-image:development
+    ports:
+      - "8080:3000"
+    volumes:
+      - /home/kwong/webdev/BasicWebDevelopment:/usr/src/app
+    environment:
+      DB_USER: postgres
+      DB_HOST: 172.29.241.95
+      DB_NAME: postgres
+      DB_PASSWORD: password
+      DB_PORT: 5432
