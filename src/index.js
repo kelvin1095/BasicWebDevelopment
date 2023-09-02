@@ -85,6 +85,7 @@ function MainLite() {
   return (
     <main>
       <nav>
+        <Link to="/">Main</Link>
         <Link to="/dark">Dark</Link>
         <Link to="/lite">Light</Link>
       </nav>
@@ -118,6 +119,7 @@ function MainDark() {
   return (
     <main>
       <nav>
+        <Link to="/">Main</Link>
         <Link to="/dark">Dark</Link>
         <Link to="/lite">Light</Link>
       </nav>

@@ -1,9 +1,8 @@
 version: "3.8"
 services:
-  webdevelopmentApp:
+  app:
     image: docker-test-image:development
-    ports:
-      - "8080:3000"
+    container_name: webdevelopmentApp
     volumes:
       - /home/kwong/webdev/BasicWebDevelopment:/usr/src/app
     environment:
@@ -13,19 +12,29 @@ services:
       DB_PASSWORD: password
       DB_PORT: 5432
     depends_on:
-      - webdevelopmentDB
+      - postgres
     networks:
       - mynetwork
 
-  webdevelopmentDB:
+  postgres:
     image: postgres
     container_name: webdevelopmentDB
     environment:
       POSTGRES_PASSWORD: password
-    ports:
-      - "5678:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  nginx:
+    image: nginx
+    container_name: webdevelopmentWeb
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
     networks:
       - mynetwork
 

@@ -41,6 +41,11 @@ This repo contains all files I have written to aid in learning web development f
 - You can also put the same steps twice for different image streams to create different images for development and production (FROM node:15 AS production, --only=production, image-name:production --target production).
   - Developer containers are using bind mounts. These link files between code locally and code inside the container so that changes made will reflect immediately.
   - To use a bind mount, docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app your-image-name:development
+- Since everything I have been doing has been on a single machine, docker compose is able to meet my requirements. However if I want to seperate my containers onto different machines, using Kubernetes seems to be the way to go.
+
+### Nginx
+
+- I don't really know much about nginx
 
 ### Things I still want to do:
 
@@ -90,12 +95,34 @@ docker exec -it webdevelopmentDB psql -U postgres
 <!-- DOCKER
 docker build -t docker-test-image:development --target development .
 docker build -t docker-test-image:production --target production .
-docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app docker-test-image:development
-docker-compose up
 
+docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app docker-test-image:development
 
 docker run --name webdevelopmentDB -e POSTGRES_PASSWORD=password -d -p 5678:5432 -v pg_data:/var/lib/postgresql/data postgres
 
 docker exec -it webdevelopmentDB psql -U postgres
+docker exec -it webdevelopmentApp /bin/bash
+docker exec -it webdevelopmentWeb /bin/bash
 
+docker-compose up
+
+docker volume ls
+docker network ls
+docker ps
  -->
+
+<!-- wsl ubuntu postgres
+stop service:
+systemctl stop postgresql
+
+start service:
+systemctl start postgresql
+
+show status of service:
+systemctl status postgresql
+
+disable service(not auto-start any more):
+systemctl disable postgresql
+
+enable service postgresql(auto-start):
+systemctl enable postgresql -->
