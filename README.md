@@ -78,6 +78,11 @@ psql -h host.docker.internal -p 5432 -U postgres -d postgres
 
 \COPY pokemon FROM '/home/kwong/webdev/BasicWebDevelopment/public/pokemonAssets/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
 
+docker cp /home/kwong/webdev/BasicWebDevelopment/public/pokemonAssets/PokemonStats.csv webdevelopmentDB:/PokemonStats.csv
+docker exec -it webdevelopmentDB psql -U postgres
+
+\COPY pokemon FROM '/PokemonStats.csv' WITH (FORMAT csv, HEADER true);
+
 \l - List out all database
 \du - List out all users
 -->
@@ -87,4 +92,10 @@ docker build -t docker-test-image:development --target development .
 docker build -t docker-test-image:production --target production .
 docker run -p 8080:3000 -v /home/kwong/webdev/BasicWebDevelopment:/usr/src/app docker-test-image:development
 docker-compose up
+
+
+docker run --name webdevelopmentDB -e POSTGRES_PASSWORD=password -d -p 5678:5432 -v pg_data:/var/lib/postgresql/data postgres
+
+docker exec -it webdevelopmentDB psql -U postgres
+
  -->
