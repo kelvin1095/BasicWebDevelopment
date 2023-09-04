@@ -17,7 +17,7 @@ services:
       - mynetwork
 
   postgres:
-    image: postgres
+    image: postgres:alpine
     container_name: webdevelopmentDB
     environment:
       POSTGRES_PASSWORD: password
@@ -27,7 +27,7 @@ services:
       - mynetwork
 
   nginx:
-    image: nginx
+    image: nginx:alpine
     container_name: webdevelopmentWeb
     ports:
       - "80:80"

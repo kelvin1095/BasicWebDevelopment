@@ -72,6 +72,24 @@ app.get("*", (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+process.on("SIGINT", () => {
+  console.log("Received SIGINT signal. Closing server gracefully...");
+
+  server.close(() => {
+    console.log("Server closed. Exiting process.");
+    process.exit(0);
+  });
+});
+
+process.on("SIGTERM", () => {
+  console.log("Received SIGTERM signal. Closing server gracefully...");
+
+  server.close(() => {
+    console.log("Server closed. Exiting process.");
+    process.exit(0);
+  });
 });
