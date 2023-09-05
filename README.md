@@ -75,6 +75,12 @@ This repo contains all files I have written to aid in learning web development.
 - Another JS framework, possibly svelte and svelte-kit
 - Searching for a free location to be able to deploy and test online (fly.io?)
 
+## Next Project:
+
+- Frontend with Svelte
+- Backend with Node.js with SvelteKit?
+- Another application server built using Rust?
+
 <!--
 DROP TABLE pokemon;
 

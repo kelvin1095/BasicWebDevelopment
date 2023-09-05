@@ -4088,6 +4088,291 @@ function getDoneFetcher(data) {
 
 /***/ }),
 
+/***/ "./src/app/navigate.jsx":
+/*!******************************!*\
+  !*** ./src/app/navigate.jsx ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MainNavigate)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_heading_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/heading.jsx */ "./src/common/heading.jsx");
+
+
+var miniProjects = [{
+  name: "Old Index Page",
+  link: "pages/oldIndex.html"
+}, {
+  name: "Time App",
+  link: "pages/clock.html"
+}, {
+  name: "To-do List",
+  link: "pages/todo.html"
+}, {
+  name: "BlackJack",
+  link: "pages/blackjack.html"
+}, {
+  name: "Pokemon",
+  link: "pages/pokemon.html"
+}, {
+  name: "Resume",
+  link: "pages/resume.html"
+}, {
+  name: "Boxes",
+  link: "pages/events.html"
+}, {
+  name: "Creepy Page",
+  link: "pages/creepy.html"
+}, {
+  name: "React Lite",
+  link: "lite"
+}, {
+  name: "React Dark",
+  link: "dark"
+}];
+function LinkToPages(props) {
+  return props.links.map(function (pageItem, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: pageItem.link
+    }, pageItem.name)));
+  });
+}
+function MainNavigate() {
+  document.title = "Index Page";
+  document.body.style.color = "Black";
+  document.body.style.backgroundColor = "White";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_heading_jsx__WEBPACK_IMPORTED_MODULE_1__.Heading1, {
+    heading: "Links to Other Pages"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LinkToPages, {
+    links: miniProjects
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/app/reactDark.jsx":
+/*!*******************************!*\
+  !*** ./src/app/reactDark.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MainDark)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function MainDark() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    clickFirst = _React$useState2[0],
+    setClickFirst = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    clickSecond = _React$useState4[0],
+    setClickSecond = _React$useState4[1];
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState6 = _slicedToArray(_React$useState5, 2),
+    clickThird = _React$useState6[0],
+    setClickThird = _React$useState6[1];
+  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
+    console.log("Times button clicked: ".concat(clickFirst, ", ").concat(clickSecond, ", ").concat(clickThird));
+    var backgroundColour = "rgb(".concat(5 * clickFirst, ", ").concat(5 * clickSecond, ", ").concat(5 * clickThird, ")");
+    document.body.style.backgroundColor = backgroundColour;
+  }, [clickFirst, clickSecond, clickThird]);
+  document.title = "React Dark Page";
+  document.body.style.color = "White";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/"
+  }, "Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/dark"
+  }, "Dark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/lite"
+  }, "Light")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Red"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickFirst), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickFirst(clickFirst + 1);
+    }
+  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickSecond), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickSecond(clickSecond + 1);
+    }
+  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Blue"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickThird), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickThird(clickThird + 1);
+    }
+  }, "Click Here!"));
+}
+
+/***/ }),
+
+/***/ "./src/app/reactLite.jsx":
+/*!*******************************!*\
+  !*** ./src/app/reactLite.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MainLite)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+function MainLite() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    clickFirst = _React$useState2[0],
+    setClickFirst = _React$useState2[1];
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    clickSecond = _React$useState4[0],
+    setClickSecond = _React$useState4[1];
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
+    _React$useState6 = _slicedToArray(_React$useState5, 2),
+    clickThird = _React$useState6[0],
+    setClickThird = _React$useState6[1];
+  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
+    console.log("Times button clicked: ".concat(clickFirst, ", ").concat(clickSecond, ", ").concat(clickThird));
+    var backgroundColour = "rgb(".concat(255 - 5 * clickFirst, ", ").concat(255 - 5 * clickSecond, ", ").concat(255 - 5 * clickThird, ")");
+    document.body.style.backgroundColor = backgroundColour;
+  }, [clickFirst, clickSecond, clickThird]);
+  document.title = "React Lite Page";
+  document.body.style.color = "Black";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/"
+  }, "Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/dark"
+  }, "Dark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/lite"
+  }, "Light")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Red"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickFirst), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickFirst(clickFirst + 1);
+    }
+  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickSecond), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickSecond(clickSecond + 1);
+    }
+  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Blue"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickThird), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setClickThird(clickThird + 1);
+    }
+  }, "Click Here!"));
+}
+
+/***/ }),
+
+/***/ "./src/common/heading.jsx":
+/*!********************************!*\
+  !*** ./src/common/heading.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Heading1: () => (/* binding */ Heading1)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Heading1(_ref) {
+  var heading = _ref.heading;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, heading);
+}
+
+/***/ }),
+
+/***/ "./src/footer/footer.jsx":
+/*!*******************************!*\
+  !*** ./src/footer/footer.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Footer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_heading_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/heading.jsx */ "./src/common/heading.jsx");
+
+
+var contact = [{
+  site: "GitHub",
+  link: "https://github.com/kelvin1095"
+}, {
+  site: "LinkedIn",
+  link: "https://www.linkedin.com/in/kelvin-w-14679ab4"
+}, {
+  site: "Instagram",
+  link: "https://www.instagram.com/negativeprogress"
+}, {
+  site: "Threads",
+  link: "https://www.threads.net/@negativeprogress"
+}];
+function ContactLinks(props) {
+  var separator = " | ";
+  return props.links.map(function (contactItem, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
+      key: contactItem.site
+    }, index > 0 && separator, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: contactItem.link
+    }, contactItem.site));
+  });
+}
+function Footer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_heading_jsx__WEBPACK_IMPORTED_MODULE_1__.Heading1, {
+    heading: "Keep in Touch"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "contactInfo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactLinks, {
+    links: contact
+  })));
+}
+
+/***/ }),
+
+/***/ "./src/header/header.jsx":
+/*!*******************************!*\
+  !*** ./src/header/header.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Header)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Header() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello, Welcome to my index page!"));
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -40645,9 +40930,9 @@ module.exports = styleTagTransform;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/*!***********************!*\
+  !*** ./src/index.jsx ***!
+  \***********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ App)
@@ -40655,187 +40940,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _footer_footer_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./footer/footer.jsx */ "./src/footer/footer.jsx");
+/* harmony import */ var _header_header_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./header/header.jsx */ "./src/header/header.jsx");
+/* harmony import */ var _app_navigate_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app/navigate.jsx */ "./src/app/navigate.jsx");
+/* harmony import */ var _app_reactLite_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app/reactLite.jsx */ "./src/app/reactLite.jsx");
+/* harmony import */ var _app_reactDark_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app/reactDark.jsx */ "./src/app/reactDark.jsx");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 
 
 
 
-function Header() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello, Welcome to my index page!"));
-}
-var miniProjects = [{
-  name: "Old Index Page",
-  link: "pages/oldIndex.html"
-}, {
-  name: "Time App",
-  link: "pages/clock.html"
-}, {
-  name: "To-do List",
-  link: "pages/todo.html"
-}, {
-  name: "BlackJack",
-  link: "pages/blackjack.html"
-}, {
-  name: "Pokemon",
-  link: "pages/pokemon.html"
-}, {
-  name: "Resume",
-  link: "pages/resume.html"
-}, {
-  name: "Boxes",
-  link: "pages/events.html"
-}, {
-  name: "Creepy Page",
-  link: "pages/creepy.html"
-}, {
-  name: "React",
-  link: "lite"
-}];
-function LinkToPages(props) {
-  return props.links.map(function (pageItem, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-      key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-      href: pageItem.link
-    }, pageItem.name)));
-  });
-}
-function MainNavigate() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Links to Other Pages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LinkToPages, {
-    links: miniProjects
-  })));
-}
-function MainLite() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    clickFirst = _React$useState2[0],
-    setClickFirst = _React$useState2[1];
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState4 = _slicedToArray(_React$useState3, 2),
-    clickSecond = _React$useState4[0],
-    setClickSecond = _React$useState4[1];
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState6 = _slicedToArray(_React$useState5, 2),
-    clickThird = _React$useState6[0],
-    setClickThird = _React$useState6[1];
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    console.log("Times button clicked: ".concat(clickFirst, ", ").concat(clickSecond, ", ").concat(clickThird));
-    var backgroundColour = "rgb(".concat(255 - 5 * clickFirst, ", ").concat(255 - 5 * clickSecond, ", ").concat(255 - 5 * clickThird, ")");
-    document.body.style.backgroundColor = backgroundColour;
-  }, [clickFirst, clickSecond, clickThird]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/"
-  }, "Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/dark"
-  }, "Dark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/lite"
-  }, "Light")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Red"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickFirst), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickFirst(clickFirst + 1);
-    }
-  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickSecond), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickSecond(clickSecond + 1);
-    }
-  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Blue"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickThird), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickThird(clickThird + 1);
-    }
-  }, "Click Here!"));
-}
-function MainDark() {
-  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState8 = _slicedToArray(_React$useState7, 2),
-    clickFirst = _React$useState8[0],
-    setClickFirst = _React$useState8[1];
-  var _React$useState9 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState10 = _slicedToArray(_React$useState9, 2),
-    clickSecond = _React$useState10[0],
-    setClickSecond = _React$useState10[1];
-  var _React$useState11 = react__WEBPACK_IMPORTED_MODULE_0___default().useState(0),
-    _React$useState12 = _slicedToArray(_React$useState11, 2),
-    clickThird = _React$useState12[0],
-    setClickThird = _React$useState12[1];
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
-    console.log("Times button clicked: ".concat(clickFirst, ", ").concat(clickSecond, ", ").concat(clickThird));
-    var backgroundColour = "rgb(".concat(5 * clickFirst, ", ").concat(5 * clickSecond, ", ").concat(5 * clickThird, ")");
-    document.body.style.backgroundColor = backgroundColour;
-  }, [clickFirst, clickSecond, clickThird]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/"
-  }, "Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/dark"
-  }, "Dark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "/lite"
-  }, "Light")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Red"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickFirst), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickFirst(clickFirst + 1);
-    }
-  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Green"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickSecond), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickSecond(clickSecond + 1);
-    }
-  }, "Click Here!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Click Test Blue"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Click Count: ", clickThird), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
-      return setClickThird(clickThird + 1);
-    }
-  }, "Click Here!"));
-}
-function Heading1(_ref) {
-  var heading = _ref.heading;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, heading);
-}
-var contact = [{
-  site: "GitHub",
-  link: "https://github.com/kelvin1095"
-}, {
-  site: "LinkedIn",
-  link: "https://www.linkedin.com/in/kelvin-w-14679ab4"
-}, {
-  site: "Instagram",
-  link: "https://www.instagram.com/negativeprogress"
-}, {
-  site: "Threads",
-  link: "https://www.threads.net/@negativeprogress"
-}];
-function ContactLinks(props) {
-  var separator = " | ";
-  return props.links.map(function (contactItem, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), {
-      key: contactItem.site
-    }, index > 0 && separator, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-      href: contactItem.link
-    }, contactItem.site));
-  });
-}
-function Footer() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Heading1, {
-    heading: "Keep in Touch"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "contactInfo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactLinks, {
-    links: contact
-  })));
-}
+
+
+
+
+
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Header, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_header_header_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MainNavigate, null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_app_navigate_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/lite",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MainLite, null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_app_reactLite_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/dark",
-    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MainDark, null)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Footer, null));
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_app_reactDark_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_footer_footer_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 }
 var root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById("root"));
 root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null));

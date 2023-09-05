@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a repository of a wide range of things I have learnt about web development.",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack",
     "start": "node server/server.js"
   },
   "dependencies": {
