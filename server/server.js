@@ -7,12 +7,20 @@ const { Pool } = require("pg");
 app.use(express.static(path.join(__dirname, "..")));
 
 // Setup the PostgreSQL connection pool
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "postgres",
+//   password: "password",
+//   port: 5432,
+// });
+
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "password",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 // Middleware to parse JSON body
@@ -41,14 +49,15 @@ app.get("/get-data-type", async (req, res) => {
 
     let queryResult;
     if (selectedValue2 == "") {
-      queryResult = await pool.query("SELECT DISTINCT name FROM pokemon WHERE type1 = $1 AND type2 IS NULL", [
-        selectedValue1,
-      ]);
+      queryResult = await pool.query(
+        "SELECT DISTINCT pokedexnumber, name FROM pokemon WHERE type1 = $1 AND type2 IS NULL ORDER BY pokedexnumber",
+        [selectedValue1]
+      );
     } else {
-      queryResult = await pool.query("SELECT DISTINCT name FROM pokemon WHERE type1 = $1 AND type2 = $2", [
-        selectedValue1,
-        selectedValue2,
-      ]);
+      queryResult = await pool.query(
+        "SELECT DISTINCT pokedexnumber, name FROM pokemon WHERE type1 = $1 AND type2 = $2",
+        [selectedValue1, selectedValue2]
+      );
     }
 
     res.status(200).json(queryResult.rows);
@@ -63,6 +72,24 @@ app.get("*", (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+process.on("SIGINT", () => {
+  console.log("Received SIGINT signal. Closing server gracefully...");
+
+  server.close(() => {
+    console.log("Server closed. Exiting process.");
+    process.exit(0);
+  });
+});
+
+process.on("SIGTERM", () => {
+  console.log("Received SIGTERM signal. Closing server gracefully...");
+
+  server.close(() => {
+    console.log("Server closed. Exiting process.");
+    process.exit(0);
+  });
 });

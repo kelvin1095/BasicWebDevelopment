@@ -4,12 +4,26 @@ const { Pool } = require("pg");
 const app = express();
 
 // Set up database connection
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "postgres",
+//   password: "password",
+//   port: 5432,
+// });
+
+console.log(process.env.DB_USER);
+console.log(process.env.DB_HOST);
+console.log(process.env.DB_NAME);
+console.log(process.env.DB_PASSWORD);
+console.log(process.env.DB_PORT);
+
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "password",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 async function testPostgres() {
